@@ -1,5 +1,7 @@
-package com.uca.capas.Domain;
+package com.uca.capas.domain;
 
+
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -14,21 +16,11 @@ public class Departamento {
     private Integer codigoDepartamento;
 
     @Column(name = "nombre")
-    private String nombreDepartamento;
+    private String nombre;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_municipio")
-    private Municipio municipio;
-
-    public Municipio getMunicipio() {
-
-        return municipio;
-    }
-
-    public void setMunicipio(Municipio municipio) {
-        this.municipio = municipio;
-    }
-
+    @OneToMany(mappedBy = "departamento",fetch = FetchType.EAGER)
+    private List<Municipio> municipios;
+    
     public Departamento() {
 
     }
@@ -41,11 +33,20 @@ public class Departamento {
         this.codigoDepartamento = codigoDepartamento;
     }
 
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+	public List<Municipio> getMunicipios() {
+		return municipios;
+	}
+
+	public void setMunicipios(List<Municipio> municipios) {
+		this.municipios = municipios;
+	}
+    
 }
