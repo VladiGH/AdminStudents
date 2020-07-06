@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class CentroEscolar {
 
     @Id
-    @Column(name = "ID_ce")
+    @Column(name = "id_ce")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoCentroEscolar;
 

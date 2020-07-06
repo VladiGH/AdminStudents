@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Departamento {
 
     @Id
-    @Column(name = "ID_departamento")
+    @Column(name = "id_departamento")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoDepartamento;
 

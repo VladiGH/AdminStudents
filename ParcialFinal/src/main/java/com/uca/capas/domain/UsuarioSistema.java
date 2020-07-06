@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 public class UsuarioSistema {
 
     @Id
-    @Column(name = "ID_user")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoUser;
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class Municipio {
 
     @Id
-    @Column(name = "ID_municipio")
+    @Column(name = "id_municipio")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoMunicipio;
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class Materia {
 	
     @Id
-    @Column(name = "ID_mat")
+    @Column(name = "id_mat")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoMateria;
 
