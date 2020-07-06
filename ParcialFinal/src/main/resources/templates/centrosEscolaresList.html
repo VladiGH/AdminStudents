@@ -12,13 +12,15 @@
     <th>descripcion</th>
     <th>direccion</th>
     <th>estado</th>
+    <th>municipio</th>
     </thead>
-    <th:block th:each="centroEscolar, row: ${centrosEscolares}">
+    <th:block th:each="centroEscolar, row: ${centrosEscolars}">
         <tr>
             <th th:text="${centroEscolar.nombre}"/>
             <th th:text="${centroEscolar.descripcion}"/>
             <th th:text="${centroEscolar.direccion}"/>
             <th th:text="${centroEscolar.estado}"/>
+            <th th:text="${centroEscolar.Municipio}"/>
         </tr>
     </th:block>
 

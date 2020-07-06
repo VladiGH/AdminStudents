@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/guardarCentroEscolar}" th:object="${CentroEscolar}" method="post">
+<form th:action="@{/guardarCentroEscolar}" th:object="${centroEscolar}" method="post">
     <br>
 
     <br>
@@ -19,9 +19,10 @@
     <span th:errors="*{descripcion}" style="color: #E81505"></span>
     <br>
     <br>
-    <label for="estado">estado </label>
-    <input th:field="*{estado}" id="carne" type="text" placeholder="Ingresa el estado" name="estado" />
-    <span th:errors="*{estado}" style="color: #E81505"></span>
+    <input type="checkbox" th:field ="*{estado}" th:value="${false}">
+    <label    >Estado   </label>
+
+    <input th:field="*{municipio}" id="carne" type="number" placeholder="Ingresa el nombre" name="estado" />
 
     <br><br>
     <input type="submit" value="Guardar" />

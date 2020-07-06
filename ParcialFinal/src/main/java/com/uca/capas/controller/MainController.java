@@ -1,7 +1,11 @@
 package com.uca.capas.controller;
 
+import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Materia;
+import com.uca.capas.domain.Municipio;
+import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.MateriaService;
+import com.uca.capas.service.MunicipioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,6 +24,12 @@ public class MainController {
 
     @Autowired
     MateriaService materiaService;
+
+    @Autowired
+    CentroEscolarService centroEscolarService;
+
+    @Autowired
+    MunicipioService municipioService;
 
     @RequestMapping("/index")
     public ModelAndView inicio() {
@@ -65,6 +75,59 @@ public class MainController {
         }
         mav.addObject("materias", materias);
         mav.setViewName("materiasList");
+        return mav;
+    }
+
+
+    //Centro escolar
+
+    @RequestMapping("/indexCE")
+    public ModelAndView inicio2() {
+        ModelAndView mav = new ModelAndView();
+        List<CentroEscolar> centroEscolars = null;
+        List<Municipio> municipios = null;
+        try {
+            centroEscolars = centroEscolarService.findAll();
+            municipios= municipioService.findAll();
+            mav.addObject("centroEscolarL", centroEscolars);
+            mav.addObject("municipioL",municipios);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        mav.setViewName("centroEscolarForm");
+        mav.addObject("centroEscolar", new CentroEscolar());
+        return mav;
+    }
+
+    @PostMapping("/guardarCentroEscolar")
+    public ModelAndView save(@Valid @ModelAttribute CentroEscolar centroEscolar, BindingResult result) {
+        ModelAndView mav = new ModelAndView();
+        if(!(result.hasErrors())) {
+            try{
+                centroEscolarService.save(centroEscolar);
+                mav.setViewName("centroEscolarForm");
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            mav.setViewName("centroEscolarForm");
+            //System.out.println(result.getAllErrors().toString());
+        }
+        return mav;
+    }
+
+
+    @RequestMapping("/listadoCentroEscolar")
+    public ModelAndView listadoCentroEscolar() {
+        ModelAndView mav = new ModelAndView();
+        List<CentroEscolar> centroEscolars = null;
+        try {
+            centroEscolars = centroEscolarService.findAll();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        mav.addObject("centroEscolars", centroEscolars);
+        mav.setViewName("centrosEscolaresList");
         return mav;
     }
 

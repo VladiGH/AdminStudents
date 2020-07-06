@@ -30,7 +30,7 @@ public class CentroEscolar {
     @JoinColumn(name="fkID_municipio")
     private	Municipio municipio;
 
-	@OneToMany(mappedBy="centroescolar", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="centroescolar", fetch = FetchType.EAGER)
 	private List<Estudiante> estudiantes;
     
 
