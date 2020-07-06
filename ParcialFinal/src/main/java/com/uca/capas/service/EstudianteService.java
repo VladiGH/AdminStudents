@@ -10,7 +10,7 @@ public interface EstudianteService {
 	
 	public List<Estudiante> findAll() throws DataAccessException;
 	
-	public Estudiante findOne(Integer code) throws DataAccessException;
+	public Estudiante findOne(String code) throws DataAccessException;
 
 	public void save(Estudiante estudiante) throws DataAccessException;
 	

@@ -29,7 +29,7 @@ public class EstudianteDAOImpl implements EstudianteDAO{
 	}
 
 	@Override
-	public Estudiante findOne(Integer code) throws DataAccessException {
+	public Estudiante findOne(String code) throws DataAccessException {
 		// TODO Auto-generated method stub
 		Estudiante estudiante = entityManager.find(Estudiante.class, code);
 		return estudiante;

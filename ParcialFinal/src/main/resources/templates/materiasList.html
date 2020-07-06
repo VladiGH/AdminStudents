@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Materias</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <th>Nombre</th>
+    <th>descripcion</th>
+    <th>estado</th>
+    </thead>
+    <th:block th:each="materia, row: ${materias}">
+        <tr>
+            <th th:text="${materia.nombre}"/>
+            <th th:text="${materia.descripcion}"/>
+            <th th:text="${materia.estado}"/>
+        </tr>
+    </th:block>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Centros escolares</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <th>Nombre</th>
+    <th>descripcion</th>
+    <th>direccion</th>
+    <th>estado</th>
+    </thead>
+    <th:block th:each="centroEscolar, row: ${centrosEscolares}">
+        <tr>
+            <th th:text="${centroEscolar.nombre}"/>
+            <th th:text="${centroEscolar.descripcion}"/>
+            <th th:text="${centroEscolar.direccion}"/>
+            <th th:text="${centroEscolar.estado}"/>
+        </tr>
+    </th:block>
+
+</table>
+
+</body>
+</html>

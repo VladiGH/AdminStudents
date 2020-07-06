@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Direccion</th>
+    <th>Es admin?</th>
+    </thead>
+    <th:block th:each="usuarioSistema, row: ${usuarios}">
+        <tr>
+            <th th:text="${usuario.nombre}"/>
+            <th th:text="${usuario.apellido}"/>
+            <th th:text="${usuario.direccion}"/>
+            <th th:text="${usuario.isAdmin}"/>>
+        </tr>
+    </th:block>
+
+</table>
+
+</body>
+</html>
