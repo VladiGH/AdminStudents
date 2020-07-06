@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,7 @@ public class MateriaCursadaDAOImpl implements MateriaCursadaDAO {
 	}
 
 	@Override
+	@Transactional
 	public void save(MateriasCursadas materia) throws DataAccessException {
 		// TODO Auto-generated method stub
 		try {

@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(schema = "public", name="MateriaCursada")
+@Table(schema = "public", name="materiacursada")
 public class MateriasCursadas {
 
     @Id

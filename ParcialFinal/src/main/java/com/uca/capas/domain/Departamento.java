@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "public",name = "Departamento")
+@Table(schema = "public",name = "departamento")
 
 public class Departamento {
 

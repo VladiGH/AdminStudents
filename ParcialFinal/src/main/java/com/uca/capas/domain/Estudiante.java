@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(schema = "public",name="Estudiante")
+@Table(schema = "public",name="estudiante")
 public class Estudiante {
 
     @Id

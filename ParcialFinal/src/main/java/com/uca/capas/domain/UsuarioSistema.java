@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(schema = "public", name="UsuarioSistema")
+@Table(schema = "public", name="usuariosistema")
 public class UsuarioSistema {
 
     @Id

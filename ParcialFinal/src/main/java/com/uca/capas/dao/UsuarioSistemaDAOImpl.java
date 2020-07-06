@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -28,6 +29,7 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO{
 	}
 
 	@Override
+	@Transactional
 	public void save(UsuarioSistema user) throws DataAccessException {
 		// TODO Auto-generated method stub
 		try {
