@@ -68,7 +68,7 @@ public class Estudiante {
     @JoinColumn(name="fkID_ce")
     private	CentroEscolar centroescolar;
 
-	@OneToMany(mappedBy="estudiante", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="estudiante", fetch = FetchType.LAZY)
 	private List<MateriasCursadas> cursadas;
     
     public Estudiante() {

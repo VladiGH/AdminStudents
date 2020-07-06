@@ -20,10 +20,10 @@ public class Municipio {
     @JoinColumn(name="ID_departamento")
     private Departamento departamento;
 
-    @OneToMany(mappedBy="municipio", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="municipio", fetch = FetchType.LAZY)
     private List<CentroEscolar> centrosEscolares;
 
-    @OneToMany(mappedBy="municipio", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="municipio", fetch = FetchType.LAZY)
     private List<UsuarioSistema> usuarios;
     
     public Municipio() {

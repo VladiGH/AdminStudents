@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -21,13 +22,14 @@ public class MateriaDAOImpl implements MateriaDAO{
 	public List<Materia> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from public.Materia");
+		sb.append("select * from public.materia");
 		Query query = entityManager.createNativeQuery(sb.toString(), Materia.class); 
 		List <Materia> resultset = query.getResultList();
 		return resultset;
 	}
 
 	@Override
+	@Transactional
 	public void save(Materia materia) throws DataAccessException {
 		// TODO Auto-generated method stub
 		try {

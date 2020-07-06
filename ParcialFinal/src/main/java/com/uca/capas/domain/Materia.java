@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(schema = "public",name="Materia")
+@Table(schema = "public",name="materia")
 public class Materia {
 	
     @Id

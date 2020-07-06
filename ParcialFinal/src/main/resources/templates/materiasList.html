@@ -8,12 +8,14 @@
 
 <table>
     <thead>
+    <th>NO.</th>
     <th>Nombre</th>
     <th>descripcion</th>
     <th>estado</th>
     </thead>
     <th:block th:each="materia, row: ${materias}">
         <tr>
+            <th th:text="${materia.codigoMateria}"/>
             <th th:text="${materia.nombre}"/>
             <th th:text="${materia.descripcion}"/>
             <th th:text="${materia.estado}"/>
