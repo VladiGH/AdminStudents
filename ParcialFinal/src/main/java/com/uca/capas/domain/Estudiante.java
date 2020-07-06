@@ -64,7 +64,7 @@ public class Estudiante {
     @Column(name="nombre_padre")
     private String nombrePadre;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fkID_ce")
     private	CentroEscolar centroescolar;
 

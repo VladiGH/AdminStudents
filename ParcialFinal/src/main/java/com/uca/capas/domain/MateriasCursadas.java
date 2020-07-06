@@ -25,11 +25,11 @@ public class MateriasCursadas {
     @Column(name = "ciclo")
     private int cicloMateriaCursada;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="codigoMateria")
     private Materia materia;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="carneEstudiante")
     private Estudiante estudiante;
     

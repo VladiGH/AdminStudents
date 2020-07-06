@@ -29,9 +29,9 @@ public class Materia {
     @Column(name = "estado")
     private Boolean estado;
     
-	@OneToMany(mappedBy="materia", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="materia", fetch = FetchType.LAZY)
 	private List<MateriasCursadas> cursadas;
-    
+
     public Materia(){
 
     }
@@ -75,7 +75,7 @@ public class Materia {
 	public void setCursadas(List<MateriasCursadas> cursadas) {
 		this.cursadas = cursadas;
 	}
-	
+
 	public String getEstadoDelegate(){
 		if(this.estado == null){
 			return "";

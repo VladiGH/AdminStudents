@@ -26,7 +26,7 @@ public class CentroEscolar {
     @Column(name = "estado")
     private Boolean estado;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="fkID_municipio")
     private	Municipio municipio;
 

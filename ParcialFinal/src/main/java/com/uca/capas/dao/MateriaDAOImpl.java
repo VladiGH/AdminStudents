@@ -22,7 +22,7 @@ public class MateriaDAOImpl implements MateriaDAO{
 	public List<Materia> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from public.materia");
+		sb.append("SELECT * FROM public.materia");
 		Query query = entityManager.createNativeQuery(sb.toString(), Materia.class); 
 		List <Materia> resultset = query.getResultList();
 		return resultset;

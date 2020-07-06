@@ -42,13 +42,13 @@ public class MainController {
         if(!(result.hasErrors())) {
             try{
                 materiaService.save(materia);
-                mav.setViewName("materiasList");
+                mav.setViewName("materiasForm");
             }catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             mav.setViewName("materiasForm");
-            System.out.println(result.getAllErrors().toString());
+            //System.out.println(result.getAllErrors().toString());
         }
         return mav;
     }
