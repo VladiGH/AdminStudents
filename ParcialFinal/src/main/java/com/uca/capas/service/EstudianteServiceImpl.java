@@ -44,4 +44,18 @@ public class EstudianteServiceImpl implements EstudianteService{
 		estudianteRepository.save(estudiante);
 	}
 
+	@Override
+	public List<Estudiante> filterByNombre(String cadena) throws DataAccessException {
+		//return estudianteRepository.findByNombre(cadena);
+		return estudianteRepository.findByNombreEstudiante(cadena);
+	}
+
+	@Override
+	public List<Estudiante> filterByApellido(String cadena) throws DataAccessException {
+		//return estudianteRepository.findByNombre(cadena);
+		return estudianteRepository.findByApellidoEstudiante(cadena);
+	}
+
+
+
 }
