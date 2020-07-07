@@ -15,4 +15,9 @@ public interface EstudianteService {
 	public void save(Estudiante estudiante) throws DataAccessException;
 	
 	public void edit(Estudiante estudiante) throws DataAccessException;
+
+	public List<Estudiante> filterByNombre(String cadena) throws DataAccessException;
+
+	public List<Estudiante> filterByApellido(String cadena) throws DataAccessException;
+
 }

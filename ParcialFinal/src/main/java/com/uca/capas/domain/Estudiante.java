@@ -47,12 +47,12 @@ public class Estudiante {
 	@Size(max = 9, min = 9, message="El campo no es igual a 9 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "telefono_fijo")
-    private  int telefonoFijo;
+    private  String telefonoFijo;
 
 	@Size(max = 9, min = 9, message="El campo no es igual a 9 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "telefono_movil")
-    private int telefonoMovil;
+    private String telefonoMovil;
 
 	@Size(max = 50, message="El campo sobrepasa la cantidad de 50 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
@@ -64,7 +64,23 @@ public class Estudiante {
     @Column(name="nombre_padre")
     private String nombrePadre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+	public String getTelefonoFijo() {
+		return telefonoFijo;
+	}
+
+	public void setTelefonoFijo(String telefonoFijo) {
+		this.telefonoFijo = telefonoFijo;
+	}
+
+	public String getTelefonoMovil() {
+		return telefonoMovil;
+	}
+
+	public void setTelefonoMovil(String telefonoMovil) {
+		this.telefonoMovil = telefonoMovil;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_ce")
     private	CentroEscolar centroescolar;
 
@@ -115,21 +131,7 @@ public class Estudiante {
 		this.direccion = direccion;
 	}
 
-	public int getTelefonoFijo() {
-		return telefonoFijo;
-	}
 
-	public void setTelefonoFijo(int telefonoFijo) {
-		this.telefonoFijo = telefonoFijo;
-	}
-
-	public int getTelefonoMovil() {
-		return telefonoMovil;
-	}
-
-	public void setTelefonoMovil(int telefonoMovil) {
-		this.telefonoMovil = telefonoMovil;
-	}
 
 	public String getNombreMadre() {
 		return nombreMadre;
