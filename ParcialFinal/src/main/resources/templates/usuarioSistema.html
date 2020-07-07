@@ -24,9 +24,9 @@
     <span th:errors="*{descripcion}" style="color: #E81505"></span>
     <br>
     <br>
-    <label for="fechanac">Fecha de nacimiento </label>
-    <input  type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01">
-    <!-- th:field="*{fechaNacimiento}" -->
+    <label for="fechaNacimiento">Fecha de nacimiento </label>
+    <input type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01" th:field="*{fechaNacimiento}">
+
     <br>
     <br>
     <label for="direccion">Direccion </label>

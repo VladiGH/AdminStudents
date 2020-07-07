@@ -158,7 +158,6 @@ public class MainController {
 
     @RequestMapping(value = "/guardarUsuarioSistema", method = RequestMethod.POST)
     public ModelAndView saveUser(@Valid @ModelAttribute UsuarioSistema user, BindingResult result, HttpServletRequest request) {
-
     	ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
         	List<Municipio> municipiosL = null;
@@ -171,6 +170,7 @@ public class MainController {
         	mav.setViewName("usuarioSistema");
         	System.out.println(result.toString());
 		}else {
+			
 			userService.save(user);
             mav.addObject("respuesta","Usuario de sistema ingresado correctamente");
             mav.setViewName("index");
@@ -182,14 +182,14 @@ public class MainController {
     @RequestMapping("/listadoUser")
     public ModelAndView listadoUser() {
         ModelAndView mav = new ModelAndView();
-        List<UsuarioSistema> userL = null;
+        List<UsuarioSistema> usuarios = null;
         try {
-        	userL = userService.findAll();
+        	usuarios = userService.findAll();
         }catch (Exception e){
             e.printStackTrace();
         }
-        mav.addObject("usuarios", userL);
-        mav.setViewName("UsuarioSistemaList");
+        mav.addObject("usuarios", usuarios);
+        mav.setViewName("userList");
         return mav;
     }
 }

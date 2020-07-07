@@ -22,7 +22,7 @@ public class UsuarioSistemaDAOImpl implements UsuarioSistemaDAO{
 	public List<UsuarioSistema> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from public.Materia");
+		sb.append("select * from public.usuariosistema");
 		Query query = entityManager.createNativeQuery(sb.toString(), UsuarioSistema.class); 
 		List <UsuarioSistema> resultset = query.getResultList();
 		return resultset;
