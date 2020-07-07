@@ -39,11 +39,14 @@
 		    <input th:field="*{estado}" type="radio" th:value = "${false}"/>
 		        <br>
 	            <br>
-	       	<label>Es Admin  </label>
-		    <input th:field="*{esAdmin}" type="radio" th:value = "${true}"/>
-	        <label>Es Coordinador  </label>
-		    <input th:field="*{esAdmin}" type="radio" th:value = "${false}"/>
-		    <br><br>
+			<th>
+				<label>Rol</label>
+				<select th:field="*{rol.id_rol}">
+					<option th:each ="rol: ${roles}" th:value="${rol.id_rol}"
+							th:text ="${rol.NombreDelegate}">
+					</option>
+				</select>
+			</th>
 		    <th>
 			 <label>Municipio</label>
 				<select th:field="*{municipio.codigoMunicipio}">

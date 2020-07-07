@@ -1,14 +1,7 @@
 package com.uca.capas.controller;
 
-import com.uca.capas.domain.CentroEscolar;
-import com.uca.capas.domain.Estudiante;
-import com.uca.capas.domain.Materia;
-import com.uca.capas.domain.Municipio;
-import com.uca.capas.domain.UsuarioSistema;
-import com.uca.capas.service.CentroEscolarService;
-import com.uca.capas.service.MateriaService;
-import com.uca.capas.service.MunicipioService;
-import com.uca.capas.service.UsuarioSistemaService;
+import com.uca.capas.domain.*;
+import com.uca.capas.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +34,9 @@ public class MainController {
     
     @Autowired
     UsuarioSistemaService userService;
+
+    @Autowired
+	RolService rolService;
     
 
     @RequestMapping("/index")
@@ -314,9 +310,15 @@ public class MainController {
         }catch(Exception e) {
      	   e.printStackTrace();
         }
-        
+        List<Rol> rolesL = null;
+        try{
+        	rolesL = rolService.findAll();
+		}catch (Exception e){
+        	e.printStackTrace();
+		}
         mav.addObject("municipios", municipiosL);
 		mav.addObject("user", user);
+		mav.addObject("roles",rolesL);
 		mav.setViewName("editUser");
 		return mav;
 	}
