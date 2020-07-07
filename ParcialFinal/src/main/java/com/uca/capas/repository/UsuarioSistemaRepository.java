@@ -6,4 +6,5 @@ import com.uca.capas.domain.UsuarioSistema;
 
 public interface UsuarioSistemaRepository extends JpaRepository<UsuarioSistema, Integer> {
 
+    UsuarioSistema findByUsername(String username);
 }

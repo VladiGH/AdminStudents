@@ -52,7 +52,7 @@ public class UsuarioSistema {
     @Column(name = "estado")
     private Boolean estado;
     
-    @Column(name = "esAdmin")
+    @Column(name = "esadmin")
     private Boolean esAdmin;
     
 	@Size(max = 8, message="El campo sobrepasa la cantidad de 8 caracteres")
@@ -66,7 +66,7 @@ public class UsuarioSistema {
     private String password;
 	
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fkID_municipio")
+    @JoinColumn(name="id_municipio")
     private Municipio municipio;
     
     public UsuarioSistema() {
