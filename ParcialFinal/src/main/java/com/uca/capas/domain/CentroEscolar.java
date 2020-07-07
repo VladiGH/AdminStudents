@@ -4,6 +4,8 @@ package com.uca.capas.domain;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema = "public",name = "centroescolar")
@@ -14,12 +16,18 @@ public class CentroEscolar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigoCentroEscolar;
 
+	@Size(max = 50, message="El campo sobrepasa la cantidad de 50 caracteres")
+	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "nombre")
     private String nombre;
 
+	@Size(max = 50, message="El campo sobrepasa la cantidad de 50 caracteres")
+	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "descripcion")
     private String descripcion;
 
+	@Size(max = 100, message="El campo sobrepasa la cantidad de 100 caracteres")
+	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "direccion")
     private String direccion;
 
@@ -27,10 +35,10 @@ public class CentroEscolar {
     private Boolean estado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fkID_municipio")
+    @JoinColumn(name="id_municipio")
     private	Municipio municipio;
 
-	@OneToMany(mappedBy="centroescolar", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="centroescolar", fetch = FetchType.LAZY)
 	private List<Estudiante> estudiantes;
     
 

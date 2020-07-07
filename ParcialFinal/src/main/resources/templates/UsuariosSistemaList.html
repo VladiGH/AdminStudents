@@ -8,17 +8,28 @@
 
 <table>
     <thead>
+    <th>No.</th>
     <th>Nombre</th>
     <th>Apellido</th>
     <th>Direccion</th>
+    <th>Fecha de nacimiento</th>
+    <th>Estado</th>
     <th>Es admin?</th>
+    <th>Username</th>
+    <th>Password</th>
     </thead>
-    <th:block th:each="usuarioSistema, row: ${usuarios}">
+    <th:block th:each="user row: ${usuarios}">
         <tr>
-            <th th:text="${usuario.nombre}"/>
-            <th th:text="${usuario.apellido}"/>
-            <th th:text="${usuario.direccion}"/>
-            <th th:text="${usuario.isAdmin}"/>>
+            <th th:text="${user.codigoUser}"/>
+            <th th:text="${user.nombre}"/>
+            <th th:text="${user.apellido}"/>
+            <th th:text="${user.direccion}"/>
+            <th th:text="${user.fechaNacimiento}"/>
+            <th th:text="${user.estado}"/>
+            <th th:text="${user.esAdmin}"/>
+            <th th:text="${user.username}"/>
+            <th th:text="${user.password}"/>
+            <th th:text="${user.municipio.nombre}"/>
         </tr>
     </th:block>
 

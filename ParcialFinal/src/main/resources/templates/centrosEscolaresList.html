@@ -8,19 +8,21 @@
 
 <table>
     <thead>
+    <th>No.</th>
     <th>Nombre</th>
-    <th>descripcion</th>
-    <th>direccion</th>
-    <th>estado</th>
-    <th>municipio</th>
+    <th>Descripcion</th>
+    <th>Direccion</th>
+    <th>Estado</th>
+    <th>Municipio</th>
     </thead>
-    <th:block th:each="centroEscolar, row: ${centrosEscolars}">
+    <th:block th:each="ce, row: ${ces}">
         <tr>
-            <th th:text="${centroEscolar.nombre}"/>
-            <th th:text="${centroEscolar.descripcion}"/>
-            <th th:text="${centroEscolar.direccion}"/>
-            <th th:text="${centroEscolar.estado}"/>
-            <th th:text="${centroEscolar.Municipio}"/>
+            <th th:text="${ce.codigoCentroEscolar}"/>
+            <th th:text="${ce.nombre}"/>
+            <th th:text="${ce.descripcion}"/>
+            <th th:text="${ce.direccion}"/>
+            <th th:text="${ce.estado}"/>
+            <th th:text="${ce.municipio.nombre}"/>
         </tr>
     </th:block>
 

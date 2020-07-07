@@ -17,7 +17,7 @@ public class Municipio {
     private String nombre;
 
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="ID_departamento")
+    @JoinColumn(name="id_departamento")
     private Departamento departamento;
 
     @OneToMany(mappedBy="municipio", fetch = FetchType.LAZY)

@@ -22,7 +22,7 @@ public class Estudiante {
     @Id
 	@Size(max = 9, min = 9, message="El campo no es igual a 9 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
-    @Column(name = "carneMinoridad")
+    @Column(name = "carneminoridad")
     private String codigoEstudiante;
 
 	@Size(max = 50, message="El campo sobrepasa la cantidad de 50 caracteres")
@@ -65,7 +65,7 @@ public class Estudiante {
     private String nombrePadre;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="fkID_ce")
+    @JoinColumn(name="id_ce")
     private	CentroEscolar centroescolar;
 
 	@OneToMany(mappedBy="estudiante", fetch = FetchType.LAZY)

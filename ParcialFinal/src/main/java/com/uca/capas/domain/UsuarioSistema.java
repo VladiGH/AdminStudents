@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(schema = "public", name="usuariosistema")
 public class UsuarioSistema {
@@ -40,8 +42,8 @@ public class UsuarioSistema {
     @Column(name = "descripcion")
     private String descripcion;
     
-	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "fecha_nac")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaNacimiento;
 
 	@Size(max = 100, message="El campo sobrepasa la cantidad de 100 caracteres")
@@ -52,7 +54,7 @@ public class UsuarioSistema {
     @Column(name = "estado")
     private Boolean estado;
     
-    @Column(name = "esAdmin")
+    @Column(name = "esadmin")
     private Boolean esAdmin;
     
 	@Size(max = 8, message="El campo sobrepasa la cantidad de 8 caracteres")
@@ -66,7 +68,7 @@ public class UsuarioSistema {
     private String password;
 	
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fkID_municipio")
+    @JoinColumn(name="id_municipio")
     private Municipio municipio;
     
     public UsuarioSistema() {

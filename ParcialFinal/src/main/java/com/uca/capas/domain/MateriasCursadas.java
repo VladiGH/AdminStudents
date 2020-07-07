@@ -10,7 +10,7 @@ public class MateriasCursadas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigoMateriaCursada")
+    @Column(name = "codigomateriacursada")
     private Integer codigoMateriaCursada;
 
 	@NotEmpty(message="Este campo no puede quedar vacio")

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/guardarCentroEscolar}" th:object="${centroEscolar}" method="post">
+<form th:action="@{/guardarUsuarioSistema}" th:object="${usuariosistema}" method="post">
     <br>
 
     <br>
@@ -14,9 +14,19 @@
     <span th:errors="*{nombre}" style="color: #E81505"></span>
     <br>
     <br>
+    <label for="apellido">Apellido </label>
+    <input th:field="*{apellido}" id="apellido" type="text" placeholder="Ingresa el apellido" name="apellido" />
+    <span th:errors="*{apellido}" style="color: #E81505"></span>
+    <br>
+    <br>
     <label for="descripcion">Descripcion </label>
     <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
     <span th:errors="*{descripcion}" style="color: #E81505"></span>
+    <br>
+    <br>
+    <label for="fechanac">Fecha de nacimiento </label>
+    <input  type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01">
+    <!-- th:field="*{fechaNacimiento}" -->
     <br>
     <br>
     <label for="direccion">Direccion </label>
@@ -26,6 +36,19 @@
     <br>
     <input type="checkbox" th:field ="*{estado}" th:value="${false}">
     <label    >Estado   </label>
+    <br>
+    <br>
+    <input type="checkbox" th:field ="*{esAdmin}" th:value="${false}">
+    <label    >¿Sera admin? (Si no es admin, es coord)   </label>
+    <br>
+    <br>
+    <label for="username">Username </label>
+    <input th:field="*{username}" id="username" type="text" placeholder="Ingresa el username" name="username" />
+    <span th:errors="*{username}" style="color: #E81505"></span>
+    <br>
+    <label for="password">Password </label>
+    <input th:field="*{password}" id="password" type="text" placeholder="Ingresa el password" name="password" />
+    <span th:errors="*{password}" style="color: #E81505"></span>
     <br>
     <br>
 	<th>
