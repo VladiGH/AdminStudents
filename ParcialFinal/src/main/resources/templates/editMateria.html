@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Editar materia</title>
+</head>
+<body>
+	<h1>Editar Materia</h1>
+    	<form method="post" th:action="@{/updateMateria}" th:object="${materia}">  
+    		<input th:field = "*{codigoMateria}" id="codigoMateria" type="number" name="codigoMateria" hidden = true/>
+	    	<label for="nombre">Nombre de materia  </label>
+		    <input th:field = "*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
+		    <span th:errors= "*{nombre}" style="color: #E81505"></span>
+			<br>
+			<br>
+	        <label for="descripcion">Descripcion    </label>
+		    <input th:field="*{descripcion}" id="descripcion" type="text" placeholder="Ingresa la descripcion"  name="descripcion" />
+		    <span th:errors="*{descripcion}" style="color: #E81505"></span>
+			<br>
+			<br>
+	        <label>Activo  </label>
+		    <input th:field="*{estado}" type="radio" th:value = "${true}"/>
+	        <label>Inactivo  </label>
+		    <input th:field="*{estado}" type="radio" th:value = "${false}"/>
+		        <br>
+	            <br>
+	        <input type="submit" value="Actualizar alumno">
+	    </form>
+</body>
+</html>

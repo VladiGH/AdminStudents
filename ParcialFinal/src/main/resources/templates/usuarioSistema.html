@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Usuarios Sistema</title>
 </head>
 <body>
-<form th:action="@{/guardarUsuarioSistema}" th:object="${usuariosistema}" method="post">
+<form th:action="@{/guardarUsuarioSistema}" th:object="${user}" method="post">
     <br>
-
+	<h3 style="color: #E81505" th:text=${respuesta}/>
     <br>
     <label for="nombre">Nombre </label>
     <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />

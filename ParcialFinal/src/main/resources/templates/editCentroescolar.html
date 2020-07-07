@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Editar Centro Escolar</title>
+</head>
+<body>
+	<h1>Editar Centro Escolar</h1>
+	<h3 style="color: #E81505" th:text=${respuesta}/>
+	
+    	<form method="post" th:action="@{/updateCentroescolar}" th:object="${centroescolar}">  
+    		<input th:field = "*{codigoCentroEscolar}" id="codigoCentroEscolar" type="number" name="codigoCentroEscolar" hidden = true/>
+	    	<label for="nombre">Nombre del CE   </label>
+		    <input th:field = "*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
+		    <span th:errors= "*{nombre}" style="color: #E81505"></span>
+			<br>
+			<br>
+	        <label for="descripcion">Descripcion    </label>
+		    <input th:field="*{descripcion}" id="descripcion" type="text" placeholder="Ingresa la descripcion"  name="descripcion" />
+		    <span th:errors="*{descripcion}" style="color: #E81505"></span>
+			<br>
+			<br>
+			<label for="direccion">Direccion    </label>
+		    <input th:field="*{direccion}" id="direccion" type="text" placeholder="Ingresa la direccion"  name="direccion" />
+		    <span th:errors="*{direccion}" style="color: #E81505"></span>
+			<br>
+			<br>
+	        <label>Activo  </label>
+		    <input th:field="*{estado}" type="radio" th:value = "${true}"/>
+	        <label>Inactivo  </label>
+		    <input th:field="*{estado}" type="radio" th:value = "${false}"/>
+		        <br>
+	            <br>
+	         <th>
+			 <label>Municipio</label>
+				<select th:field="*{municipio.codigoMunicipio}">
+				<option th:each ="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
+						th:text ="${muni.nombre}">
+				</option>
+				</select>
+			</th>
+		    <br><br>
+	        <input type="submit" value="Actualizar registro">
+	    </form>
+</body>
+</html>
