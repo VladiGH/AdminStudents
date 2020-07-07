@@ -53,9 +53,10 @@ public class UsuarioSistema {
 	
     @Column(name = "estado")
     private Boolean estado;
-    
-    @Column(name = "esadmin")
-    private Boolean esAdmin;
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "id_rol")
+    private Rol rol;
     
 	@Size(max = 8, message="El campo sobrepasa la cantidad de 8 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
@@ -131,12 +132,12 @@ public class UsuarioSistema {
 		this.estado = estado;
 	}
 
-	public Boolean getEsAdmin() {
-		return esAdmin;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setEsAdmin(Boolean esAdmin) {
-		this.esAdmin = esAdmin;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	public String getUsername() {
