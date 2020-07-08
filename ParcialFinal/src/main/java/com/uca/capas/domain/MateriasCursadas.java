@@ -2,7 +2,9 @@ package com.uca.capas.domain;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(schema = "public", name="materiacursada")
@@ -13,24 +15,30 @@ public class MateriasCursadas {
     @Column(name = "codigomateriacursada")
     private Integer codigoMateriaCursada;
 
-	@NotEmpty(message="Este campo no puede quedar vacio")
+	@NotNull(message="Este campo no puede quedar vacio")
+	@Min(value=0, message="Notas del 0.0-10-0")
+	@Max(value=10,  message="Notas del 0.0-10-0")
     @Column(name = "nota")
-    private int notaMateriaCursada;
+    private Float notaMateriaCursada;
 
-	@NotEmpty(message="Este campo no puede quedar vacio")
+	@NotNull(message="Este campo no puede quedar vacio")
+	@Min(value=2005, message="Annio invalido. Minimo = 2005")
+	@Max(value=2020, message="Annio invalido. Minimo = 2020")
     @Column(name = "annio")
-    private int annioMateriaCursada;
+    private Integer annioMateriaCursada;
 
-	@NotEmpty(message="Este campo no puede quedar vacio")
+	@NotNull(message="Este campo no puede quedar vacio")
+	@Min(value=1, message="Ciclos validos = 01, 02, 03")
+	@Max(value=3, message="Ciclos validos = 01, 02, 03")
     @Column(name = "ciclo")
-    private int cicloMateriaCursada;
+    private Integer cicloMateriaCursada;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="codigoMateria")
+    @JoinColumn(name="codigomateria")
     private Materia materia;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="carneEstudiante")
+    @JoinColumn(name="codigoestudiante")
     private Estudiante estudiante;
     
     public MateriasCursadas() {
@@ -45,28 +53,28 @@ public class MateriasCursadas {
 		this.codigoMateriaCursada = codigoMateriaCursada;
 	}
 
-	public int getNotaMateriaCursada() {
+	public Float getNotaMateriaCursada() {
 		return notaMateriaCursada;
 	}
 
-	public void setNotaMateriaCursada(int notaMateriaCursada) {
+	public void setNotaMateriaCursada(Float notaMateriaCursada) {
 		this.notaMateriaCursada = notaMateriaCursada;
 	}
-
-	public int getAnnioMateriaCursada() {
-		return annioMateriaCursada;
-	}
-
-	public void setAnnioMateriaCursada(int annioMateriaCursada) {
-		this.annioMateriaCursada = annioMateriaCursada;
-	}
-
-	public int getCicloMateriaCursada() {
+	
+	public Integer getCicloMateriaCursada() {
 		return cicloMateriaCursada;
 	}
 
-	public void setCicloMateriaCursada(int cicloMateriaCursada) {
+	public void setCicloMateriaCursada(Integer cicloMateriaCursada) {
 		this.cicloMateriaCursada = cicloMateriaCursada;
+	}
+
+	public Integer getAnnioMateriaCursada() {
+		return annioMateriaCursada;
+	}
+
+	public void setAnnioMateriaCursada(Integer annioMateriaCursada) {
+		this.annioMateriaCursada = annioMateriaCursada;
 	}
 
 	public Materia getMateria() {
@@ -84,6 +92,13 @@ public class MateriasCursadas {
 	public void setEstudiante(Estudiante estudiante) {
 		this.estudiante = estudiante;
 	}
-    
+	public String getNotaDelegate(){
+		if(this.notaMateriaCursada < 6.0){
+			return "REPROBADA";
+		}
+		else{
+			return "APROBADA";
+		}
+	}
     
 }

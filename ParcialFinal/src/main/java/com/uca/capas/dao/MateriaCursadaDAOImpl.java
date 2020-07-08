@@ -21,7 +21,7 @@ public class MateriaCursadaDAOImpl implements MateriaCursadaDAO {
 	public List<MateriasCursadas> findAll() throws DataAccessException {
 		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from public.MateriaCursada");
+		sb.append("select * from public.materiacursada");
 		Query query = entityManager.createNativeQuery(sb.toString(), MateriasCursadas.class); 
 		List <MateriasCursadas> resultset = query.getResultList();
 		return resultset;
