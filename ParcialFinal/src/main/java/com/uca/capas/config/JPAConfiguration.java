@@ -40,7 +40,7 @@ public class JPAConfiguration {
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/adminStudent");
 		dataSource.setUsername("postgres");//aca va el user y la contra
-		dataSource.setPassword("admin");
+		dataSource.setPassword("postgres");
 		
 		return dataSource;
 	}

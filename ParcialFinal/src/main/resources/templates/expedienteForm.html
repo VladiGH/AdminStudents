@@ -6,8 +6,8 @@
     <title>Title</title>
 </head>
 <body>
-<form  th:action="@{/buscarEstudiante}" th:object="${estudiante}"  method="post">
-    <input th:field="*{apellidoEstudiante}" id="codigo" type="text" placeholder="Codigo estudiante"  name="codigoEstudiante" />
+<form  th:action="@{/buscarEstudianteNombre}" th:object="${estudiante}"  method="post">
+    <input th:field="*{nombreEstudiante}" id="codigo" type="text" placeholder="Codigo estudiante"  name="codigoEstudiante" />
 
     <br>
     <input type="submit" value="Buscar Estudiante">

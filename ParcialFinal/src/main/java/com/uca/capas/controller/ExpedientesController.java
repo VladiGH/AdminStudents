@@ -27,7 +27,7 @@ public class ExpedientesController {
     @RequestMapping("/buscar")
     public ModelAndView inicio3() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("expedienteForm");
+
         mav.addObject("estudiante", new Estudiante());
 
         return mav;
@@ -41,8 +41,8 @@ public class ExpedientesController {
     }
 */
 
-    @RequestMapping(value = "/buscarEstudiante", method = RequestMethod.POST)
-    public ModelAndView buscar(@RequestParam(value="nombreEstudiante") String nombre) {
+    @RequestMapping(value = "/buscarEstudianteNombre", method = RequestMethod.POST)
+    public ModelAndView buscarNombre(@RequestParam(value="nombreEstudiante") String nombre) {
         ModelAndView mav = new ModelAndView();
         List<Estudiante> estudiantes = null;
         try {
@@ -52,12 +52,12 @@ public class ExpedientesController {
             e.printStackTrace();
         }
         mav.addObject("estudiantes", estudiantes);
-        mav.setViewName("expediente");
+        mav.setViewName("studentsList");
         return mav;
     }
 
     @RequestMapping(value = "/buscarEstudianteApellido", method = RequestMethod.POST)
-    public ModelAndView buscarApellido(@RequestParam(value="apellidoEstudiante") String apellido) {
+    public ModelAndView buscarApellido(@RequestParam(value="filtro") String apellido) {
         ModelAndView mav = new ModelAndView();
         List<Estudiante> estudiantes = null;
         try {
@@ -67,7 +67,7 @@ public class ExpedientesController {
             e.printStackTrace();
         }
         mav.addObject("estudiantes", estudiantes);
-        mav.setViewName("expediente");
+        mav.setViewName("studentsList");
         return mav;
     }
 
