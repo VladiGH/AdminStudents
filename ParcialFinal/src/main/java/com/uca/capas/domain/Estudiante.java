@@ -1,6 +1,8 @@
 package com.uca.capas.domain;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
@@ -35,8 +38,9 @@ public class Estudiante {
     @Column(name="apellidos")
     private String apellidoEstudiante;
 
-	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "fecha_nac")
+	@NotNull(message = "La fecha no debe estar vacia")
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date fechaNacimiento;
 
 	@Size(max = 100, message="El campo sobrepasa la cantidad de 100 caracteres")
@@ -163,6 +167,46 @@ public class Estudiante {
 
 	public void setCursadas(List<MateriasCursadas> cursadas) {
 		this.cursadas = cursadas;
+	}
+
+	public int getAprobadasDelegate(){
+    	int aprobada=0;
+		for(MateriasCursadas mc: cursadas){
+
+			if(mc.getNotaMateriaCursada()>=6){
+				aprobada++;
+			}
+
+		}
+		return aprobada;
+	}
+
+	public int getReprobadasDelegate(){
+		int reprobada=0;
+		for(MateriasCursadas mc: cursadas){
+
+			if(mc.getNotaMateriaCursada()<6){
+				reprobada++;
+			}
+
+		}
+		return reprobada;
+	}
+
+	public float getPromedio(){
+    	float promedio=0,aux=0,suma=0;
+
+    	if(cursadas.size()==0){
+    		return 0;
+		}
+
+		for(MateriasCursadas mc: cursadas){
+
+			suma+=mc.getNotaMateriaCursada();
+		}
+		aux=cursadas.size();
+		promedio=suma/aux;
+		return promedio;
 	}
 
 }

@@ -2,6 +2,8 @@ package com.uca.capas.service;
 
 import java.util.List;
 
+import com.uca.capas.domain.Estudiante;
+import com.uca.capas.repository.MateriaCursadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,9 @@ import com.uca.capas.domain.MateriasCursadas;
 public class MateriaCursadaServiceImpl implements MateriaCursadaService{
 
 	@Autowired
-	//MateriaCursadaRepo mcRepository; si se usa repo
+	MateriaCursadaRepository mcRepository;
+
+	@Autowired
 	MateriaCursadaDAO materiaCDAO;
 	
 	@Override
@@ -35,9 +39,16 @@ public class MateriaCursadaServiceImpl implements MateriaCursadaService{
 	}
 
 	@Override
+	public List<MateriasCursadas> findByName(Estudiante estudiante) throws DataAccessException {
+		return mcRepository.findByEstudiante(estudiante);
+	}
+
+
+	@Override
 	public void edit(MateriasCursadas materia) throws DataAccessException {
 		// TODO Auto-generated method stub
 		materiaCDAO.save(materia);
 	}
+
 
 }

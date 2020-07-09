@@ -56,6 +56,19 @@ public class EstudianteServiceImpl implements EstudianteService{
 		return estudianteRepository.findByApellidoEstudiante(cadena);
 	}
 
+	@Override
+	public List<Estudiante> getByQueri(Integer tipo, String cadena) throws DataAccessException {
+		List<Estudiante> result=null;
+		switch (tipo){
+			case 1:
+				result=estudianteRepository.findByNombreEstudiante(cadena);
+				break;
+			case 2:
+				result=estudianteRepository.findByApellidoEstudiante(cadena);
+				break;
+		}
+		return result;
+	}
 
 
 }

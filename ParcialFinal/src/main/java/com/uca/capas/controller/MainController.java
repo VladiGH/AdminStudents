@@ -37,6 +37,12 @@ public class MainController {
 
     @Autowired
 	RolService rolService;
+
+    @Autowired
+	EstudianteService estudianteService;
+
+    @Autowired
+	MateriaCursadaService materiaCursadaService;
     
 
     @RequestMapping("/index")
@@ -350,6 +356,28 @@ public class MainController {
 			mav.addObject("users", users);
 			mav.setViewName("userList");
 		}
+		return mav;
+	}
+
+	@RequestMapping("/listadoExpedientes")
+	public ModelAndView listadoExpedientes() {
+		ModelAndView mav = new ModelAndView();
+		List<Estudiante> estudiantes = null;
+		try {
+			estudiantes = estudianteService.findAll();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		mav.addObject("estudiantes", estudiantes);
+		/*
+		List<MateriasCursadas> materiasCursadas = null;
+		try {
+			materiasCursadas = materiaCursadaService.findAll();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		mav.addObject("materiascursadas",materiasCursadas);*/
+		mav.setViewName("studentsList");
 		return mav;
 	}
 }
