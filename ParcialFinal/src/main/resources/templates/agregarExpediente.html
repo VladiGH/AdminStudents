@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar expediente</title>
+    <script type="text/javascript">
+        function handler(){
+        let fecha = document.getElementById("fechaNacimiento").value;
+        let bd = new Date(fecha);
+        let diff_ms = Date.now() - bd.getTime();
+        let age_dt = new Date(diff_ms);
+        let age = Math.abs(age_dt.getUTCFullYear() - 1970);
+        if(age!==NaN) document.getElementById("edad").defaultValue = age;
+    }</script>
+</head>
+<body>
+<form th:action="@{/agregarExpediente}" th:object="${estudiante}" method="post">
+    <label for="codigoEstudiante">Codigo del estudiante </label>
+    <input th:field="*{codigoEstudiante}" id="codigoEstudiante" type="text" placeholder="Codigo del estudiante" name="codigoEstudiante" />
+    <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
+    <br>
+    <label for="nombreEstudiante">Nombre </label> <input th:field="*{nombreEstudiante}"
+    id="nombreEstudiante" type="text" placeholder="Nombre del estudiante"
+    name="nombreEstudiante" />
+    <span th:errors="*{nombreEstudiante}"
+    style="color: #E81505"></span>
+
+    <label for="apellidoEstudiante">Apellido </label> <input th:field="*{apellidoEstudiante}"
+                                               id="apellidoEstudiante" type="text" placeholder="Apellido del estudiante"
+                                               name="apellidoEstudiante" /> <span th:errors="*{apellidoEstudiante}"
+                                                                                style="color: #E81505"></span>
+
+    <label for="fechaNacimiento">Fecha de nacimiento </label> <input th:field="*{fechaNacimiento}" onchange="handler()"
+                                                         id="fechaNacimiento" type="date" placeholder="Fecha de nacimiento"
+                                                         name="fechaNacimiento" /> <span th:errors="*{fechaNacimiento}"
+                                                                                          style="color: #E81505"></span>
+    <laber for="edad">Edad</laber>
+    <input id="edad" type="text" name="edad" readonly/>
+    <label for="direccion">Dirección </label> <input th:field="*{direccion}"
+                                                         id="direccion" type="text" placeholder="Dirección"
+                                                         name="direccion" />
+    <span th:errors="*{direccion}"
+          style="color: #E81505"></span>
+
+    <label for="telefonoFijo">Telefono fijo </label> <input th:field="*{telefonoFijo}"
+                                                         id="telefonoFijo" type="text" placeholder="Telefono fijo"
+                                                         name="telefonoFijo" />
+    <span th:errors="*{telefonoFijo}"
+          style="color: #E81505"></span>
+
+    <label for="telefonoMovil">Telefono movil </label> <input th:field="*{telefonoMovil}"
+                                                         id="telefonoMovil" type="text" placeholder="Telefono movil"
+                                                         name="telefonoMovil" />
+    <span th:errors="*{telefonoMovil}"
+          style="color: #E81505"></span>
+
+    <th>
+        <label>Centro escolar</label>
+        <select th:field="*{centroescolar.codigoCentroEscolar}">
+            <option th:each ="ce: ${centros}" th:value="${ce.codigoCentroEscolar}"
+                    th:text ="${ce.nombre}">
+            </option>
+        </select>
+    </th>
+    <br>
+    <label for="nombrePadre">Nombre del padre </label>
+    <input th:field="*{nombrePadre}" id="nombrePadre" type="text" placeholder="Nombre del padre" name="nombrePadre" />
+    <span th:errors="*{nombrePadre}" style="color: #E81505"></span>
+    <br>
+    <label for="nombreMadre">Nombre del padre </label>
+    <input th:field="*{nombreMadre}" id="nombreMadre" type="text" placeholder="Nombre de la madre" name="nombreMadre" />
+    <span th:errors="*{nombreMadre}" style="color: #E81505"></span>
+    <br>
+    <input type="submit" value="Agregar expediente">
+    <input type="reset" value="Limpiar campos">
+</form>
+</body>
+</html>

@@ -1,20 +1,18 @@
 package com.uca.capas.controller;
 
 
+import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Estudiante;
-import com.uca.capas.domain.Municipio;
-import com.uca.capas.domain.UsuarioSistema;
+import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -23,6 +21,8 @@ public class ExpedientesController {
     @Autowired
     EstudianteService estudianteService;
 
+    @Autowired
+    CentroEscolarService centroEscolarService;
 
     @RequestMapping("/buscar")
     public ModelAndView inicio3() {
@@ -30,6 +30,54 @@ public class ExpedientesController {
 
         mav.addObject("estudiante", new Estudiante());
 
+        return mav;
+    }
+
+    @GetMapping("agregarExpediente")
+    public ModelAndView agregarExpedienteForm(){
+        ModelAndView mav = new ModelAndView();
+        List<CentroEscolar> centros = null;
+        try{
+            centros = centroEscolarService.findAll();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        mav.addObject("centros",centros);
+        mav.setViewName("agregarExpediente");
+        mav.addObject("estudiante", new Estudiante());
+        return mav;
+    }
+
+    @PostMapping("agregarExpediente")
+    public ModelAndView agregarExpediente(@Validated @ModelAttribute Estudiante estudiante, BindingResult result){
+        ModelAndView mav = new ModelAndView();
+        if(result.hasErrors()){
+            mav = agregarExpedienteForm();
+            mav.addObject("estudiante",estudiante);
+            return mav;
+        }
+        try{
+            estudianteService.save(estudiante);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        mav.setViewName("index");
+        return mav;
+    }
+
+    @GetMapping("editarExpediente/{codigoEstudiante}")
+    public ModelAndView editarExpedienteForm(@PathVariable("codigoEstudiante") String id){
+        Estudiante estudiante = null;
+        try {
+            estudiante = estudianteService.findOne(id);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        ModelAndView mav = agregarExpedienteForm();
+        mav.setViewName("editarExpediente");
+        mav.addObject("estudiante",estudiante);
+        String fechaForm = new SimpleDateFormat("yyyy-MM-dd").format((estudiante.getFechaNacimiento()));
+        mav.addObject("fechaForm",fechaForm);
         return mav;
     }
 
