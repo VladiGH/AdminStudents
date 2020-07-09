@@ -3,8 +3,10 @@ package com.uca.capas.controller;
 
 import com.uca.capas.domain.CentroEscolar;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.domain.MateriasCursadas;
 import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.EstudianteService;
+import com.uca.capas.service.MateriaCursadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Controller
 public class ExpedientesController {
+
+    @Autowired
+    MateriaCursadaService materiaCursadaService;
 
     @Autowired
     EstudianteService estudianteService;
@@ -124,15 +129,23 @@ public class ExpedientesController {
     @PostMapping("filtrarExpediente")
     public ModelAndView filtro(@RequestParam Integer tipo,@RequestParam String cadena) throws ParseException{
         ModelAndView mav = new ModelAndView();
+        String aux;
+
+        int aprobadas= 0,reprobadas=0;
 
         if(tipo!=null){
             List<Estudiante> estudianteList =estudianteService.getByQueri(tipo,cadena);
-            for(Estudiante str : estudianteList)
+            List<MateriasCursadas> materiasL = null;
+            for(Estudiante estu : estudianteList)
             {
                 //imprimimos el objeto pivote
-                System.out.println(str);
-            }
+                System.out.println(estu.getCodigoEstudiante());
+                aux=estu.getCodigoEstudiante();
+                materiasL=materiaCursadaService.findByName(estu);
+                estu.setCursadas(materiasL);
+                System.out.println("LASMATERIAS SON:  "+materiasL.size());
 
+            }
 
             mav.addObject("estu", estudianteList);
         }else{
@@ -143,7 +156,7 @@ public class ExpedientesController {
         mav.setViewName("studentsList");
 
         return mav;
-
     }
+
 
 }

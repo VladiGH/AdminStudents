@@ -22,4 +22,6 @@ public interface EstudianteService {
 
 	public List<Estudiante> getByQueri(Integer tipo,String cadena) throws DataAccessException;
 
+
+
 }

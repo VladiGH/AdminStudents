@@ -169,4 +169,44 @@ public class Estudiante {
 		this.cursadas = cursadas;
 	}
 
+	public int getAprobadasDelegate(){
+    	int aprobada=0;
+		for(MateriasCursadas mc: cursadas){
+
+			if(mc.getNotaMateriaCursada()>=6){
+				aprobada++;
+			}
+
+		}
+		return aprobada;
+	}
+
+	public int getReprobadasDelegate(){
+		int reprobada=0;
+		for(MateriasCursadas mc: cursadas){
+
+			if(mc.getNotaMateriaCursada()<6){
+				reprobada++;
+			}
+
+		}
+		return reprobada;
+	}
+
+	public float getPromedio(){
+    	float promedio=0,aux=0,suma=0;
+
+    	if(cursadas.size()==0){
+    		return 0;
+		}
+
+		for(MateriasCursadas mc: cursadas){
+
+			suma+=mc.getNotaMateriaCursada();
+		}
+		aux=cursadas.size();
+		promedio=suma/aux;
+		return promedio;
+	}
+
 }

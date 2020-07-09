@@ -50,22 +50,13 @@ public class MateriaCursadaController {
         List<MateriasCursadas> materiasL = null;
         try {
 			//List<Float> notas = new ArrayList<>();
-        	materiasL = materiaCursadaService.findAll();
-			for(MateriasCursadas obj : materiasL)
-			{
-				//imprimimos el objeto pivote
-				promedio+=obj.getNotaMateriaCursada();
-			}
-
-			promedio=promedio/materiasL.size();
-
-
+        	materiasL = materiaCursadaService.findByName(estudiante);
         }catch(Exception e) {
     	   e.printStackTrace();
         }
         mav.addObject("materiascursadas", materiasL);
 		mav.addObject("estudiante", estudiante);
-		mav.addObject("prom", promedio);
+
 		mav.setViewName("materiacursada");
 		return mav;
 	}	
