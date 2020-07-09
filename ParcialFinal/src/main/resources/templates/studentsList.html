@@ -9,7 +9,9 @@
 <body>
 <h2>Expedientes</h2>
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
-<input type="button" class="btn btn-primary btn-sm"  value="+ Agregar Nuevo Expediente">
+<form th:action="@{/agregarExpediente}" method="get">
+	<input type="submit" class="btn btn-primary btn-sm"  value="+ Agregar Nuevo Expediente">
+</form>
 <br>
 <form  method="post" th:object="${estudiantes}" th:action="@{filtrarExpediente}">
     <label for="criterio">Buscar Alumno Por:</label>
@@ -37,18 +39,18 @@
     <th:block th:each="estudiantes, row :${estu}"><!--th:each="user"-->
         <tr>
             <td>
-                <form  method="post"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
-                    <input class="btn btn-outline-warning" type="submit" value="Editar"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
+             	<form th:action="@{/editarExpediente/}+ ${{estudiantes.codigoEstudiante}} " method="get"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
+                    <input class="btn btn-outline-warning" type="submit" value="Lupa"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
                 </form>
-                <th th:text="${estudiantes.nombreEstudiante}"/>
-                <th th:text="${estudiantes.apellidoEstudiante}"/>
-                <th th:text="${estudiantes.aprobadasDelegate}"/>
-                <th th:text="${estudiantes.reprobadasDelegate}"/>
-                <th th:text="${estudiantes.promedio}"/>
-
-                <th/>
-            </td>
-
+                <form th:action="@{/materiacursada/}+ ${{estudiantes.codigoEstudiante}} " method="get"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
+                    <input class="btn btn-outline-warning" type="submit" value="Lapiz"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
+                </form>
+           	</td>
+            <th th:text="${estudiantes.nombreEstudiante}"/>
+            <th th:text="${estudiantes.apellidoEstudiante}"/>
+            <th th:text="${estudiantes.aprobadasDelegate}"/>
+            <th th:text="${estudiantes.reprobadasDelegate}"/>
+           	<th th:text="${estudiantes.promedio}"/>
         </tr>
     </th:block>
 
