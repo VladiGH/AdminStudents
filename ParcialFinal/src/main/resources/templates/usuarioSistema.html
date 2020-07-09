@@ -38,10 +38,6 @@
     <label    >Estado   </label>
     <br>
     <br>
-    <input type="checkbox" th:field ="*{esAdmin}" th:value="${false}">
-    <label    >¿Sera admin? (Si no es admin, es coord)   </label>
-    <br>
-    <br>
     <label for="username">Username </label>
     <input th:field="*{username}" id="username" type="text" placeholder="Ingresa el username" name="username" />
     <span th:errors="*{username}" style="color: #E81505"></span>
