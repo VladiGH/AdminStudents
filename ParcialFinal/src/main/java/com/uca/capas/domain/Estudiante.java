@@ -1,6 +1,8 @@
 package com.uca.capas.domain;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
@@ -35,8 +38,9 @@ public class Estudiante {
     @Column(name="apellidos")
     private String apellidoEstudiante;
 
-	@NotEmpty(message="Este campo no puede quedar vacio")
     @Column(name = "fecha_nac")
+	@NotNull(message = "La fecha no debe estar vacia")
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date fechaNacimiento;
 
 	@Size(max = 100, message="El campo sobrepasa la cantidad de 100 caracteres")
