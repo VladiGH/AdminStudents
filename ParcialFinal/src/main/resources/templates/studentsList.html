@@ -11,15 +11,15 @@
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
 <input type="button" class="btn btn-primary btn-sm"  value="+ Agregar Nuevo Expediente">
 <br>
-<form th:action="@{/buscarEstudianteNombre}" method="post" th:object="${estudiantes}">
+<form  method="post" th:object="${estudiantes}" th:action="@{filtrarExpediente}">
     <label for="criterio">Buscar Alumno Por:</label>
-    <select name="criterio" id="criterio">
-        <option th:action="@{/buscarEstudianteNombre}">Nombre</option>
-        <option th:action="@{/buscarEstudianteApellido}">Apellido</option>
+    <select name="tipo" id="criterio">
+        <option value="1">Nombre</option>
+        <option value="2">Apellido</option>
     </select>
     <br>
     <label >Valor de Busqueda:</label>
-    <input type="text" >
+    <input type="text" name="cadena" >
     <input type="submit" class="btn btn-primary btn-sm" value="Buscar" >
 </form>
 <br><br>
@@ -34,7 +34,7 @@
     <th>Promedio</th>
     </thead>
 
-    <th:block th:each="estudiantes, row :${estudiantes}"><!--th:each="user"-->
+    <th:block th:each="estudiantes, row :${estu}"><!--th:each="user"-->
         <tr>
             <td>
                 <form  method="post"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->

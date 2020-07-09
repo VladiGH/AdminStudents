@@ -1,5 +1,7 @@
 package com.uca.capas.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,6 +40,8 @@ public class MateriaCursadaController {
 	public ModelAndView materiasCursadas(@PathVariable("codigoEstudiante") String id){
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = null;
+		float promedio=0;
+
 		try {
 			estudiante = estudianteService.findOne(id);
 		}catch(Exception e) {
@@ -45,12 +49,23 @@ public class MateriaCursadaController {
 		}
         List<MateriasCursadas> materiasL = null;
         try {
+			//List<Float> notas = new ArrayList<>();
         	materiasL = materiaCursadaService.findAll();
+			for(MateriasCursadas obj : materiasL)
+			{
+				//imprimimos el objeto pivote
+				promedio+=obj.getNotaMateriaCursada();
+			}
+
+			promedio=promedio/materiasL.size();
+
+
         }catch(Exception e) {
     	   e.printStackTrace();
         }
         mav.addObject("materiascursadas", materiasL);
 		mav.addObject("estudiante", estudiante);
+		mav.addObject("prom", promedio);
 		mav.setViewName("materiacursada");
 		return mav;
 	}	

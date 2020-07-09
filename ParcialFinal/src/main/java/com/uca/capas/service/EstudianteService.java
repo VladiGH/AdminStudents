@@ -20,4 +20,6 @@ public interface EstudianteService {
 
 	public List<Estudiante> filterByApellido(String cadena) throws DataAccessException;
 
+	public List<Estudiante> getByQueri(Integer tipo,String cadena) throws DataAccessException;
+
 }

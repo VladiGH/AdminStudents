@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ExpedientesController {
         ModelAndView mav = new ModelAndView();
 
         mav.addObject("estudiante", new Estudiante());
+        mav.setViewName("studentsList");
 
         return mav;
     }
@@ -119,6 +121,29 @@ public class ExpedientesController {
         return mav;
     }
 
+    @PostMapping("filtrarExpediente")
+    public ModelAndView filtro(@RequestParam Integer tipo,@RequestParam String cadena) throws ParseException{
+        ModelAndView mav = new ModelAndView();
 
+        if(tipo!=null){
+            List<Estudiante> estudianteList =estudianteService.getByQueri(tipo,cadena);
+            for(Estudiante str : estudianteList)
+            {
+                //imprimimos el objeto pivote
+                System.out.println(str);
+            }
+
+
+            mav.addObject("estu", estudianteList);
+        }else{
+            System.out.println("No recibi nada bro :C");
+        }
+
+
+        mav.setViewName("studentsList");
+
+        return mav;
+
+    }
 
 }
