@@ -87,6 +87,12 @@ public class MateriaCursadaController {
     public ModelAndView save(@Valid @ModelAttribute MateriasCursadas materia, BindingResult result, @PathVariable("codigoEstudiante") String id) {
         ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
+        	if(!result.getFieldErrors("annioMateriaCursada").isEmpty()) 
+        		mav.addObject("annioMateriaCursadas", result.getFieldErrors("annioMateriaCursada").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("cicloMateriaCursada").isEmpty()) 
+        		mav.addObject("cicloMateriaCursadas", result.getFieldErrors("cicloMateriaCursada").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("notaMateriaCursada").isEmpty()) 
+        		mav.addObject("notaMateriaCursadas", result.getFieldErrors("notaMateriaCursada").get(0).getDefaultMessage().toString());
     		Estudiante estudiante = null;
     		try {
     			estudiante = estudianteService.findOne(id);
@@ -160,6 +166,12 @@ public class MateriaCursadaController {
 	public ModelAndView update(@Valid @ModelAttribute MateriasCursadas materia, BindingResult result,@PathVariable("codigoEstudiante") String id) {
 		ModelAndView mav = new ModelAndView();
 		if(result.hasErrors()) {
+			if(!result.getFieldErrors("annioMateriaCursada").isEmpty()) 
+        		mav.addObject("annioMateriaCursadas", result.getFieldErrors("annioMateriaCursada").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("cicloMateriaCursada").isEmpty()) 
+        		mav.addObject("cicloMateriaCursadas", result.getFieldErrors("cicloMateriaCursada").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("notaMateriaCursada").isEmpty()) 
+        		mav.addObject("notaMateriaCursadas", result.getFieldErrors("notaMateriaCursada").get(0).getDefaultMessage().toString());
 			MateriasCursadas materiaC = null;
     		Estudiante estudiante = null;
             List<Materia> materiasL = null;

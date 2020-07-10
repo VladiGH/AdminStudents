@@ -24,17 +24,17 @@
         <br><br>
         <label for="annioMateriaCursada">Annio </label>
         <input th:field="*{annioMateriaCursada}" id="annioMateriaCursada" type="number" placeholder="Ingresa el Annio" name="annioMateriaCursada" />
-        <span th:errors="*{annioMateriaCursada}" style="color: #E81505"></span>
+        <span th:text="${annioMateriaCursadas}" style="color: #E81505"></span>
         <br>
         <br>
         <label for="cicloMateriaCursada">Ciclo </label>
         <input th:field="*{cicloMateriaCursada}" id="cicloMateriaCursada" type="number" placeholder="Ingresa el ciclo" name="cicloMateriaCursada" />
-        <span th:errors="*{cicloMateriaCursada}" style="color: #E81505"></span>
+        <span th:text="${cicloMateriaCursadas}" style="color: #E81505"></span>
         <br>
         <br>
         <label for="notaMateriaCursada">Nota </label>
         <input th:field="*{notaMateriaCursada}" id="notaMateriaCursada" type="number" step="0.01" placeholder="Ingresa la nota" name="notaMateriaCursada" />
-        <span th:errors="*{notaMateriaCursada}" style="color: #E81505"></span>
+        <span th:text="${notaMateriaCursadas}" style="color: #E81505"></span>
         <br>
         <br>
 
