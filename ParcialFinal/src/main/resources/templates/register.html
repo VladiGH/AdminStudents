@@ -1,57 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
-<form th:action="@{/register}" method="post" th:object="${user}">
-    <br>
-    <h3 style="color: #E81505" th:text=${respuesta}/>
-        <br>
-        <label for="nombre">Nombre </label>
-        <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
-        <span th:errors="*{nombre}" style="color: #E81505"></span>
-        <br>
-        <br>
-        <label for="apellido">Apellido </label>
-        <input th:field="*{apellido}" id="apellido" type="text" placeholder="Ingresa el apellido" name="apellido" />
-        <span th:errors="*{apellido}" style="color: #E81505"></span>
-        <br>
-        <br>
-        <label for="descripcion">Descripcion </label>
-        <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
-        <span th:errors="*{descripcion}" style="color: #E81505"></span>
-        <br>
-        <br>
-        <label for="fechaNacimiento">Fecha de nacimiento </label>
-        <input type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01" th:field="*{fechaNacimiento}">
-        <br>
-        <br>
-        <label for="direccion">Direccion </label>
-        <input th:field="*{direccion}" id="apellido" type="text" placeholder="Ingresa la direccion" name="direccion" />
-        <span th:errors="*{direccion}" style="color: #E81505"></span>
-        <br>
-        <br>
-        <label for="username">Username </label>
-        <input th:field="*{username}" id="username" type="text" placeholder="Ingresa el username" name="username" />
-        <span th:errors="*{username}" style="color: #E81505"></span>
-        <br>
-        <label for="password">Password </label>
-        <input th:field="*{password}" id="password" type="text" placeholder="Ingresa el password" name="password" />
-        <span th:errors="*{password}" style="color: #E81505"></span>
-        <br>
-        <br>
-        <th>
-            <label>Municipio</label>
-            <select th:field="*{municipio.codigoMunicipio}">
-                <option th:each ="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
-                        th:text ="${muni.nombre}">
-                </option>
-            </select>
-        </th>
-        <br><br>
-        <input type="submit" value="Guardar" />
-</form>
+
+<div class="container">
+    <form th:action="@{/register}" method="post" th:object="${user}" class="well form-horizontal">
+        <fieldset>
+
+            <legend>
+                <center>
+                    <h3 style="color: #E81505" th:text=${respuesta} />
+                </center>
+            </legend><br>
+
+            <br>
+            <div class="form-group">
+                <label for="nombre" class="col-md-4 control-label">Nombre </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre"
+                               name="nombre" class="form-control" />
+                        <span th:errors="*{nombre}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="apellido" class="col-md-4 control-label">Apellido </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{apellido}" id="apellido" type="text" placeholder="Ingresa el apellido"
+                               name="apellido" />
+                        <span th:errors="*{apellido}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripcion </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{descripcion}" id="apellido" type="text"
+                               placeholder="Ingresa la descripcion" name="descripcion" />
+                        <span th:errors="*{descripcion}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de nacimiento </label>
+                <input type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01"
+                       th:field="*{fechaNacimiento}">
+
+            </div>
+
+            <br>
+            <div class="form-group">
+                <label for="direccion">Direccion </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{direccion}" id="apellido" type="text" placeholder="Ingresa la direccion"
+                               name="direccion" />
+                        <span th:errors="*{direccion}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="username">Username </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{username}" id="username" type="text" placeholder="Ingresa el username"
+                               name="username" />
+                        <span th:errors="*{username}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{password}" id="password" type="text" placeholder="Ingresa el password"
+                               name="password" />
+                        <span th:errors="*{password}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <th>
+                    <label>Municipio</label>
+                    <select th:field="*{municipio.codigoMunicipio}">
+                        <option th:each="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
+                                th:text="${muni.nombre}">
+                        </option>
+                    </select>
+                </th>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" />
+            </div>
+
+        </fieldset>
+    </form>
+</div>
 </body>
+
 </html>

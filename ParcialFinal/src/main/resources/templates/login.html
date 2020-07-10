@@ -1,24 +1,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head >
+    <link rel="stylesheet" href="login.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!------ Include the above in your HEAD tag ---------->
     <title>Log in</title>
 </head>
 <body>
+<div class="Container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+
+            <div class="card-body">
                 <h1 th:text="${errorMsg}" ></h1>
                 <form name="f" th:action="@{/signin}" method="post">
                     <fieldset>
-
-
-                            <label for="txtUsername">Username</label>
-                            <input type="text" id="txtUsername" name="txtUsername"
-                                   placeholder="Username">
-
-                            <label for="txtPassword">Password</label>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text"  id="txtUsername" name="txtUsername"
+                                   placeholder="Username" class="form-control">
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
                             <input type="password" id="txtPassword" name="txtPassword"
-                                   placeholder="Password">
+                                   placeholder="Password"  class="form-control">
+                        </div>
 
-                            <button type="submit">Log in</button>
+                        <div class="form-group">
+                            <input type="submit"  class="btn float-right login_btn" value="Login">
+                        </div>
+
+
                     </fieldset>
                 </form>
-<a href="/register"><button>Registrarse</button></a>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        No tiene una cuenta?<a href="/register">Registrarse</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

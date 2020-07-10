@@ -9,7 +9,9 @@
 </head>
 
 <body>
+<div class="container" align="center">
 <h2>Expedientes</h2>
+</div>
 <input type="button" class="btn btn-outline-danger" onClick = "location.href='/logout';" value="Log Out">
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
 <form th:action="@{/agregarExpediente}" method="get">
@@ -31,15 +33,14 @@
 </form>
 <br><br>
 
-<table>
-    <thead>
-    <th>Accion</th>
-    <th>      </th>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Materias Aprobadas</th>
-    <th>Materias Reprobadas</th>
-    <th>Promedio</th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col" class="text-center">Accion</th>
+        <th scope="col" class="text-center">Nombre</th>
+        <th scope="col" class="text-center">Apellido</th>
+        <th scope="col" class="text-center">Materias Aprobadas</th>
+        <th scope="col" class="text-center">Materias Reprobadas</th>
+        <th scope="col" class="text-center">Promedio</th>
     </thead>
 
     <th:block th:each="estudiantes, row :${estu}"><!--th:each="user"-->
