@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,9 +36,23 @@ public class MainController {
         return mav;
     }
 
-    @GetMapping("/login")
-    public ModelAndView loginPage(){
+    @RequestMapping("/login")
+    public ModelAndView loginPage(@RequestParam(value = "error",required = false)String error){
         ModelAndView mav = new ModelAndView();
+        if(error!=null){
+            String errorMsg;
+            switch (error){
+                case "User is disabled":
+                    errorMsg = "Su usario no esta activado, contacte al administrador";
+                    break;
+                    case "Bad credentials":
+                            errorMsg = "Credenciales incorrectas";
+                            break;
+                default:
+                    errorMsg = "Error al intentar iniciar sesión";
+            }
+            mav.addObject("errorMsg",errorMsg);
+        }
         mav.setViewName("/login");
         return mav;
     }
@@ -47,9 +60,10 @@ public class MainController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping("login-error")
     public ModelAndView error(){
+        System.out.println("hola");
         SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
         ModelAndView mav = new ModelAndView();
-        mav.addObject("errorMsg","Ya hay un usuario logeado en el sistema");
+        mav.addObject("errorMsg","Ya hay un usuario utilizando el sistema");
         mav.setViewName("/login");
         return mav;
     }
