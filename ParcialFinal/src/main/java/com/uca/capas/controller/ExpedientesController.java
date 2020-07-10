@@ -70,7 +70,18 @@ public class ExpedientesController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        mav.setViewName("index");
+        List<Estudiante> estudianteList =estudianteService.findAll();
+        List<MateriasCursadas> materiasL = null;
+        for(Estudiante estu : estudianteList)
+        {
+            System.out.println(estu.getCodigoEstudiante());
+            materiasL=materiaCursadaService.findByName(estu);
+            estu.setCursadas(materiasL);
+
+        }
+        mav.addObject("estu", estudianteList);
+        mav.addObject("respuesta","Expediente agregado con exito");
+        mav.setViewName("studentsList");
         return mav;
     }
 
@@ -99,6 +110,18 @@ public class ExpedientesController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        
+        List<Estudiante> estudianteList =estudianteService.findAll();
+        List<MateriasCursadas> materiasL = null;
+        for(Estudiante estu : estudianteList)
+        {
+            System.out.println(estu.getCodigoEstudiante());
+            materiasL=materiaCursadaService.findByName(estu);
+            estu.setCursadas(materiasL);
+            System.out.println("LASMATERIAS SON:  "+materiasL.size());
+
+        }
+        mav.addObject("estu", estudianteList);
         mav.addObject("estudiantes", estudiantes);
         mav.setViewName("studentsList");
         return mav;
@@ -145,8 +168,6 @@ public class ExpedientesController {
                 System.out.println(estu.getCodigoEstudiante());
                 materiasL=materiaCursadaService.findByName(estu);
                 estu.setCursadas(materiasL);
-                System.out.println("LASMATERIAS SON:  "+materiasL.size());
-
             }
             mav.addObject("estu", estudianteList);
         }else{

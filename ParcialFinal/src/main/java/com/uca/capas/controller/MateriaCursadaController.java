@@ -119,6 +119,7 @@ public class MateriaCursadaController {
 			}
 			materia.setEstudiante(estudiante);
 			materiaCursadaService.save(materia);
+			
 	        List<MateriasCursadas> materiasL = null;
 	        try {
 	        	materiasL = materiaCursadaService.findByName(estudiante);
@@ -127,7 +128,7 @@ public class MateriaCursadaController {
 	        }
 
 			mav.addObject("estudiante", estudiante);
-			mav.addObject("respuesta", "Materia Cursada guardada con éxito");
+			mav.addObject("respuesta", "Materia Cursada guardada con éxito (Si la nueva materia no aparece, actualizar)");
 	        mav.addObject("materiascursadas", materiasL);
 			mav.setViewName("materiacursada");
 		}
