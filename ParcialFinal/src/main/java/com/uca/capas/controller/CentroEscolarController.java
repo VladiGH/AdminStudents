@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@Secured("ROLE_ADMIN")
+@Secured("ROLE_ADMINISTRADOR")
 public class CentroEscolarController {
 
     @Autowired
