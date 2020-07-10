@@ -12,13 +12,13 @@
 
 		<div class="container" align="center"><h2>Vista de Catalogos</h2></div>
 	<br>
-	<input type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoMateria';" value="Ver Materias">
+	<input sec:authorize="hasAuthority('ROLE_ADMINISTRADOR')" type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoMateria';" value="Ver Materias">
 	<br><br>
-	<input type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoCentroEscolar';" value="Ver Centros Escolares">
+	<input sec:authorize="hasAuthority('ROLE_ADMINISTRADOR')" type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoCentroEscolar';" value="Ver Centros Escolares">
 	<br><br>
-	<input type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoUser';" value="Ver Usuarios de Sistema">
+	<input sec:authorize="hasAuthority('ROLE_ADMINISTRADOR')" type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoUser';" value="Ver Usuarios de Sistema">
 	<br><br>
-		<input type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoExpedientes';" value="Ver Lista de Alumnos">
+	<input sec:authorize="hasAuthority('ROLE_COORDINADOR')" type="button" class="btn btn-primary btn-lg btn-block" onClick = "location.href='/listadoExpedientes';" value="Ver Lista de Alumnos">
 		<br><br>
 	</div>
 </div>
