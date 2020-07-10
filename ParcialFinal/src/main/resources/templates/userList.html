@@ -2,14 +2,16 @@
 <html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+ 	<link href="css/style.css" rel="stylesheet" />
     <title>Usuarios</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
+<input id="logout" type="button" class="btn btn-outline-danger" style="float: right;" onClick = "location.href='/logout';" value="Log Out">
+<br>
 <div class="container" align="center"><h2>Usuarios del Sistema</h2></div>
-<input type="button" class="btn btn-outline-danger" onClick = "location.href='/logout';" value="Log Out">
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
 <input type="button" class="btn btn-primary btn-sm" onClick = "location.href='/ingresoUser';" value="Ingresar Usuario de Sistema">
 	<br>
@@ -34,7 +36,7 @@
         	</td>
             <th scope="row" th:text="${user.codigoUser}"/>
             <th scope="row" th:text="${user.descripcion}"/>
-            <th scope="row" th:text="${user.estado}"/>
+            <th scope="row" th:text="${user.estadoDelegate}"/>
             <th scope="row" th:text="${user.username}"/>
         </tr>
     </th:block>
