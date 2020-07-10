@@ -46,7 +46,17 @@
     <input th:field="*{password}" id="password" type="text" placeholder="Ingresa el password" name="password" />
     <span th:errors="*{password}" style="color: #E81505"></span>
     <br>
-    <br>
+        <br>
+        <th>
+            <label>Rol</label>
+            <select th:field="*{rol.id_rol}">
+                <option th:each ="rol: ${roles}" th:value="${rol.id_rol}"
+                        th:text ="${rol.NombreDelegate}">
+                </option>
+            </select>
+        </th>
+        <br>
+        <br>
 	<th>
 	<label>Municipio</label>
 		<select th:field="*{municipio.codigoMunicipio}">
