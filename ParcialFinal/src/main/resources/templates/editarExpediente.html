@@ -1,77 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Agregar expediente</title>
     <script type="text/javascript">
-        function handler(){
+        function handler() {
             let fecha = document.getElementById("fechaNacimiento").value;
             let bd = new Date(fecha);
             let diff_ms = Date.now() - bd.getTime();
             let age_dt = new Date(diff_ms);
             let age = Math.abs(age_dt.getUTCFullYear() - 1970);
-            if(age!==NaN) document.getElementById("edad").defaultValue = age;
+            if (age !== NaN) document.getElementById("edad").defaultValue = age;
         }</script>
 </head>
+
+
 <body>
-<form th:action="@{/agregarExpediente}" th:object="${estudiante}" method="post">
-    <label for="codigoEstudiante">Codigo del estudiante </label>
-    <input th:field="*{codigoEstudiante}" id="codigoEstudiante" type="text" placeholder="Codigo del estudiante" name="codigoEstudiante" />
-    <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
-    <br>
-    <label for="nombreEstudiante">Nombre </label> <input th:field="*{nombreEstudiante}"
-                                                         id="nombreEstudiante" type="text" placeholder="Nombre del estudiante"
-                                                         name="nombreEstudiante" />
-    <span th:errors="*{nombreEstudiante}"
-          style="color: #E81505"></span>
+<div class="container">
+    <form th:action="@{/agregarExpediente}" th:object="${estudiante}" method="post" class="well form-horizontal">
+        <fieldset>
 
-    <label for="apellidoEstudiante">Apellido </label> <input th:field="*{apellidoEstudiante}"
-                                                             id="apellidoEstudiante" type="text" placeholder="Apellido del estudiante"
-                                                             name="apellidoEstudiante" /> <span th:errors="*{apellidoEstudiante}"
-                                                                                                style="color: #E81505"></span>
+            <div class="form-group">
+                <label for="codigoEstudiante" class="col-md-4 control-label">Codigo del estudiante </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{codigoEstudiante}" id="codigoEstudiante" type="text"
+                               placeholder="Codigo del estudiante" name="codigoEstudiante" class="form-control" />
+                        <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
 
-    <label for="fechaNacimiento">Fecha de nacimiento </label> <input th:value="${fechaForm}" onchange="handler()"
-                                                                     id="fechaNacimiento" type="date" placeholder="Fecha de nacimiento"
-                                                                     name="fechaNacimiento" /> <span th:errors="*{fechaNacimiento}"
-                                                                                                     style="color: #E81505"></span>
-    <laber for="edad">Edad</laber>
-    <input id="edad" type="text" name="edad" readonly/>
-    <label for="direccion">Dirección </label> <input th:field="*{direccion}"
-                                                     id="direccion" type="text" placeholder="Dirección"
-                                                     name="direccion" />
-    <span th:errors="*{direccion}"
-          style="color: #E81505"></span>
+            <div class="form-group">
+                <label for="nombreEstudiante" class="col-md-4 control-label">Nombre </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{nombreEstudiante}" id="nombreEstudiante" type="text"
+                               placeholder="Nombre del estudiante" name="nombreEstudiante" class="form-control" />
+                        <span th:errors="*{nombreEstudiante}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
 
-    <label for="telefonoFijo">Telefono fijo </label> <input th:field="*{telefonoFijo}"
-                                                            id="telefonoFijo" type="text" placeholder="xxxx-xxxx"
-                                                            name="telefonoFijo" />
-    <span th:errors="*{telefonoFijo}"
-          style="color: #E81505"></span>
+            <div class="form-group">
+                <label for="apellidoEstudiante" class="col-md-4 control-label">Apellido </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{apellidoEstudiante}" id="apellidoEstudiante" type="text"
+                               placeholder="Apellido del estudiante" name="apellidoEstudiante" class="form-control" />
+                        <span th:errors="*{apellidoEstudiante}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
 
-    <label for="telefonoMovil">Telefono movil </label> <input th:field="*{telefonoMovil}"
-                                                              id="telefonoMovil" type="text" placeholder="xxxx-xxxx"
-                                                              name="telefonoMovil" />
-    <span th:errors="*{telefonoMovil}"
-          style="color: #E81505"></span>
+            <div class="form-group">
+                <label for="fechaNacimiento" class="col-md-4 control-label">Fecha de nacimiento </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:value="${fechaForm}" onchange="handler()" id="fechaNacimiento" type="date"
+                               placeholder="Fecha de nacimiento" name="fechaNacimiento" /> <span
+                            th:errors="*{fechaNacimiento}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
 
-    <th>
-        <label>Centro escolar</label>
-        <select th:field="*{centroescolar.codigoCentroEscolar}">
-            <option th:each ="ce: ${centros}" th:value="${ce.codigoCentroEscolar}"
-                    th:text ="${ce.nombre}">
-            </option>
-        </select>
-    </th>
-    <br>
-    <label for="nombrePadre">Nombre del padre </label>
-    <input th:field="*{nombrePadre}" id="nombrePadre" type="text" placeholder="Nombre del padre" name="nombrePadre" />
-    <span th:errors="*{nombrePadre}" style="color: #E81505"></span>
-    <br>
-    <label for="nombreMadre">Nombre del padre </label>
-    <input th:field="*{nombreMadre}" id="nombreMadre" type="text" placeholder="Nombre de la madre" name="nombreMadre" />
-    <span th:errors="*{nombreMadre}" style="color: #E81505"></span>
-    <br>
-    <input type="submit" value="Guardar expediente">
-</form>
+            <div class="form-group">
+                <laber for="edad">Edad</laber>
+                <input id="edad" type="text" name="edad" readonly />
+            </div>
+
+            <div class="form-group">
+                <label for="direccion" class="col-md-4 control-label">Dirección </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{direccion}" id="direccion" type="text" placeholder="Dirección"
+                               name="direccion" class="form-control" />
+                        <span th:errors="*{direccion}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefonoFijo" class="col-md-4 control-label">Telefono fijo </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{telefonoFijo}" id="telefonoFijo" type="text" placeholder="xxxx-xxxx"
+                               name="telefonoFijo" class="form-control" />
+                        <span th:errors="*{telefonoFijo}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="telefonoMovil" class="col-md-4 control-label">Telefono movil </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{telefonoMovil}" id="telefonoMovil" type="text"
+                               placeholder="xxxx-xxxx" name="telefonoMovil" class="form-control" />
+                        <span th:errors="*{telefonoMovil}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+            <th>
+                <label>Centro escolar</label>
+                <select th:field="*{centroescolar.codigoCentroEscolar}">
+                    <option th:each="ce: ${centros}" th:value="${ce.codigoCentroEscolar}" th:text="${ce.nombre}">
+                    </option>
+                </select>
+            </th>
+
+            <div class="form-group">
+                <label for="nombrePadre" class="col-md-4 control-label">Nombre del padre </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{nombrePadre}" id="nombrePadre" type="text" placeholder="Nombre del padre"
+                               name="nombrePadre" class="form-control" />
+                        <span th:errors="*{nombrePadre}" style="color: #E81505"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="nombreMadre" class="col-md-4 control-label">Nombre del padre </label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <input th:field="*{nombreMadre}" id="nombreMadre" type="text"
+                               placeholder="Nombre de la madre" name="nombreMadre" class="form-control"  />
+                        <span th:errors="*{nombreMadre}" style="color: #E81505"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar expediente" class="btn btn-warning">
+            </div>
+        </fieldset>
+    </form>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
 </html>

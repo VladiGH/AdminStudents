@@ -115,7 +115,7 @@ public class MateriaCursadaController {
 			materiaCursadaService.save(materia);
 	        List<MateriasCursadas> materiasL = null;
 	        try {
-	        	materiasL = materiaCursadaService.findAll();
+	        	materiasL = materiaCursadaService.findByName(estudiante);
 	        }catch(Exception e) {
 	    	   e.printStackTrace();
 	        }
