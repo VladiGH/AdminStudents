@@ -3,54 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Estudiantes</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 
 </head>
 <body>
-<h2>Expedientes</h2>
+<div class="container" align="center"><h2>Expedientes</h2></div>
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
-<form th:action="@{/agregarExpediente}" method="get">
-	<input type="submit" class="btn btn-primary btn-sm"  value="+ Agregar Nuevo Expediente">
-</form>
+<input type="button" class="btn btn-primary btn-sm"  value="+ Agregar Nuevo Expediente">
 <br>
-<form  method="post" th:object="${estudiantes}" th:action="@{filtrarExpediente}">
-    <label for="criterio">Buscar Alumno Por:</label>
-    <select name="tipo" id="criterio">
-        <option value="1">Nombre</option>
-        <option value="2">Apellido</option>
+<br>
+<form th:action="@{/buscarEstudianteNombre}" method="post" th:object="${estudiantes}">
+    <label for="criterio" > Buscar Alumno Por:</label>
+    <select class="mdb-select  md-form" name="criterio" id="criterio">
+        <option th:action="@{/buscarEstudianteNombre}">Nombre</option>
+        <option th:action="@{/buscarEstudianteApellido}">Apellido</option>
     </select>
-    <br>
     <label >Valor de Busqueda:</label>
-    <input type="text" name="cadena" >
+    <input type="text" >
     <input type="submit" class="btn btn-primary btn-sm" value="Buscar" >
 </form>
-<br><br>
 
-<table>
-    <thead>
-    <th>Accion</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Materias Aprobadas</th>
-    <th>Materias Reprobadas</th>
-    <th>Promedio</th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <th scope="col" class="text-center">Accion</th>
+    <th scope="col" class="text-center">Nombre</th>
+    <th scope="col" class="text-center">Apellido</th>
+    <th scope="col" class="text-center">Materias Aprobadas</th>
+    <th scope="col" class="text-center">Materias Reprobadas</th>
+    <th scope="col" class="text-center">Promedio</th>
     </thead>
 
-    <th:block th:each="estudiantes, row :${estu}"><!--th:each="user"-->
+    <th:block th:each="estudiantes, row :${estudiantes}"><!--th:each="user"-->
         <tr>
             <td>
-             	<form th:action="@{/editarExpediente/}+ ${{estudiantes.codigoEstudiante}} " method="get"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
-                    <input class="btn btn-outline-warning" type="submit" value="Lupa"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
+                <form  method="post"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
+                    <a class="btn btn-outline-warning" href="#" type="submit" >
+
+                        Editar</a>
+                    <input class="btn btn-outline-warning" type="submit" value="Update"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
                 </form>
-                <form th:action="@{/materiacursada/}+ ${{estudiantes.codigoEstudiante}} " method="get"><!-- th:action="@{/editUser/}+ ${{user.codigoUser}} " -->
-                    <input class="btn btn-outline-warning" type="submit" value="Lapiz"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
-                </form>
-           	</td>
-            <th th:text="${estudiantes.nombreEstudiante}"/>
-            <th th:text="${estudiantes.apellidoEstudiante}"/>
-            <th th:text="${estudiantes.aprobadasDelegate}"/>
-            <th th:text="${estudiantes.reprobadasDelegate}"/>
-           	<th th:text="${estudiantes.promedio}"/>
+                <th th:text="${estudiantes.nombreEstudiante}"/>
+                <th th:text="${estudiantes.apellidoEstudiante}"/>
+                <th/>
+            </td>
+
         </tr>
     </th:block>
 
