@@ -74,7 +74,6 @@ public class ExpedientesController {
         List<MateriasCursadas> materiasL = null;
         for(Estudiante estu : estudianteList)
         {
-            System.out.println(estu.getCodigoEstudiante());
             materiasL=materiaCursadaService.findByName(estu);
             estu.setCursadas(materiasL);
 
@@ -98,6 +97,37 @@ public class ExpedientesController {
         mav.addObject("estudiante",estudiante);
         String fechaForm = new SimpleDateFormat("yyyy-MM-dd").format((estudiante.getFechaNacimiento()));
         mav.addObject("fechaForm",fechaForm);
+        return mav;
+    }
+
+    @PostMapping("/editarExpediente")
+    public ModelAndView editarExpediente(@Validated @ModelAttribute Estudiante estudiante, BindingResult result){
+        ModelAndView mav = new ModelAndView();
+        if(result.hasErrors()){
+            mav = agregarExpedienteForm();
+            mav.setViewName("editarExpediente");
+            mav.addObject("estudiante",estudiante);
+            String fechaForm = new SimpleDateFormat("yyyy-MM-dd").format((estudiante.getFechaNacimiento()));
+            mav.addObject("fechaForm",fechaForm);
+            return mav;
+        }
+        try{
+            estudianteService.save(estudiante);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        List<Estudiante> estudianteList =estudianteService.findAll();
+        List<MateriasCursadas> materiasL = null;
+        for(Estudiante estu : estudianteList)
+        {
+            System.out.println(estu.getCodigoEstudiante());
+            materiasL=materiaCursadaService.findByName(estu);
+            estu.setCursadas(materiasL);
+
+        }
+        mav.addObject("estu", estudianteList);
+        mav.addObject("respuesta","Expediente editado con exito");
+        mav.setViewName("studentsList");
         return mav;
     }
 
