@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,8 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry());
         http.authorizeRequests().
+                antMatchers("/register").permitAll().
                 antMatchers("/**").authenticated().
-                 and()
+                and()
                 .formLogin()
                 .loginProcessingUrl("/signin")
                 .loginPage("/login").permitAll()

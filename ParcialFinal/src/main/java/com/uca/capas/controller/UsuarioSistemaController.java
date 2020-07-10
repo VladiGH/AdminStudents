@@ -48,7 +48,6 @@ public class UsuarioSistemaController {
         mav.addObject("municipios", municipiosL);
         mav.addObject("roles",rolesL);
         mav.addObject("user", new UsuarioSistema());
-
         return mav;
     }
 
