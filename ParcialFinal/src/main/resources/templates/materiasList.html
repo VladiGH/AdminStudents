@@ -7,19 +7,19 @@
     
 </head>
 <body>
-<h2>Materias</h2>
+<div class="container" align="center"><h2>Materias</h2></div>
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
 <input type="button" class="btn btn-primary btn-sm" onClick = "location.href='/ingresoMateria';" value="Nueva Materia">
 <br>
 	<h3 th:text=${respuesta}></h3>
 <br>
-<table>
-    <thead>
-    <th>Accion</th>
-    <th>No.</th>
-    <th>Nombre</th>
-    <th>Descripcion</th>
-    <th>Estado</th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <th scope="col" class="text-center">Accion</th>
+    <th scope="col" class="text-center">No.</th>
+    <th scope="col" class="text-center">Nombre</th>
+    <th scope="col" class="text-center">Descripcion</th>
+    <th scope="col" class="text-center">Estado</th>
     </thead>
     <th:block th:each="materia, row: ${materias}">
         <tr>

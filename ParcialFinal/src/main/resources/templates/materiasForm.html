@@ -2,30 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nueva Materia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+<br>
+<div class="container" align="center"><h2>Nueva Materia</h2></div>
 <form th:action="@{/guardarMateria}" th:object="${materia}" method="post">
     <br>
+    <div class="container" align="center">
+        <label for="nombre">Nombre </label>
+        <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
+        <span th:errors="*{nombre}" style="color: #E81505"></span>
+        <br>
+        <br>
+        <label for="descripcion">Descripcion </label>
+        <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
+        <span th:errors="*{descripcion}" style="color: #E81505"></span>
+        <br>
+        <br>
+        <label for="estado">Estado </label>
 
+        <input type="checkbox" th:field ="*{estado}" th:value="${false}">
+        <label    >Activo   </label>
+    </div>
     <br>
-    <label for="nombre">Nombre </label>
-    <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
-    <span th:errors="*{nombre}" style="color: #E81505"></span>
-    <br>
-    <br>
-    <label for="descripcion">Descripcion </label>
-    <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
-    <span th:errors="*{descripcion}" style="color: #E81505"></span>
-    <br>
-    <br>
-    <label for="estado">Estado </label>
-
-    <input type="checkbox" th:field ="*{estado}" th:value="${false}">
-    <label    >Estado   </label>
-
-    <br><br>
-    <input type="submit" value="Guardar"  onClick="location.href='/listado'" />
+    <div class="container" align="center">
+        <input class="btn btn-primary" type="submit" value="Guardar"  onClick="location.href='/listado'" /></div>
 
 </form>
 </body>

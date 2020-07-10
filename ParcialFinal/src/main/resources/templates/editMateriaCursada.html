@@ -17,7 +17,7 @@
     <h2>Estudiante: </h2><h3 th:text=${materia.estudiante.nombreEstudiante}></h3>
     <input th:field = "*{codigoMateriaCursada}" id="codigoMateriaCursada" type="number" name="codigoMateriaCursada" hidden = true/>
     <br>
-    <h3 th:text=${respuesta} style="color: #E81505"></h3>
+    <p><h3 th:text=${respuesta} style="color: #E81505"></h3></p>
     <br>
    	<th>
 	<label>Materia</label>
@@ -43,7 +43,7 @@
     <span th:errors="*{notaMateriaCursada}" style="color: #E81505"></span>
     <br>
     <br>
-    <input type="submit" value="Actualizar registro" />
+    <input class="btn btn-primary" type="submit" value="Actualizar registro" />
 
 </form>
 
