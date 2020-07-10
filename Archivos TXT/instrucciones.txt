@@ -1,0 +1,10 @@
+Nombre de la base de datos: adminStudent
+Puerto PosgreSQL es el por defecto
+Para el aplicativo:
+- Usuario para entrar como administrador: admin
+  contrasennia: admin
+- Usuario para entrar como coordinador: coord
+  contrasennia: coord
+
+URL principal:
+localhost:8080/index

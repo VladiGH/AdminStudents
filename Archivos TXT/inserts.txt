@@ -1,0 +1,194 @@
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Santa Ana');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('San Salvador');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('La Libertad');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Chalatenango');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('San Miguel');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Usulutan');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Cuscatlan');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('La Paz');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('La Union');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('San Vicente');
+	
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Ahuachapan');
+
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Sonsonate');
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Cabanas');
+INSERT INTO public.departamento(
+	nombre)
+	VALUES ('Morazan');
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Santa Ana', 1);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('San Salvador', 2);
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Santa Tecla', 3);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Chalatenango', 4);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('San Miguel', 5);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Usulutan', 6);
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Cojutepeque', 7);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Zacatecoluca', 8);
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('La Union', 9);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('San Vicente', 10);
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Ahuachapan', 11);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Sensuntepeque', 13);
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Cacaopera', 14);
+	
+INSERT INTO public.municipio(
+	nombre, id_departamento)
+	VALUES ('Sonsonate', 12);
+
+INSERT INTO public.usuariosistema(
+	nombre, apellido, descripcion, fecha_nac, direccion, estado, username, password, id_municipio, id_rol)
+	VALUES ('Raul', 'Calderon', 'Administrador', '1998-05-04', '1 Calle', true, 'admin', 'admin', 1, 1);
+
+INSERT INTO public.usuariosistema(
+	nombre, apellido, descripcion, fecha_nac, direccion, estado, username, password, id_municipio, id_rol)
+	VALUES ('Alexis', 'Gomez', 'Coordinador', '1998-06-06', '2 Calle', true, 'coord', 'coord', 25, 2);
+INSERT INTO public.centroescolar(
+	 nombre, descripcion, direccion, estado, id_municipio)
+	VALUES ('Liceo Salvadoreño', 'Colegio Marista', '1a Calle Pte, San Salvador', true, 2);
+INSERT INTO public.centroescolar(
+	 nombre, descripcion, direccion, estado, id_municipio)
+	VALUES ('Colegio Champagnat', 'Colegio Marista', '7a Av. Nte, Santa Tecla', true, 3);
+INSERT INTO public.centroescolar(
+	 nombre, descripcion, direccion, estado, id_municipio)
+	VALUES ('Externado San José', 'Compañia de Jesús', 'San Salvador', true, 2);
+
+INSERT INTO public.materia(
+	nombre, descripcion, estado)
+	VALUES ('TSC', 'Simulación', true);
+INSERT INTO public.materia(
+	nombre, descripcion, estado)
+	VALUES ('PNC', 'N-Capas', true);
+INSERT INTO public.materia(
+	nombre, descripcion, estado)
+	VALUES ('PED', 'Estructuras de datos', true);
+INSERT INTO public.materia(
+	nombre, descripcion, estado)
+	VALUES ('POO', 'Objetos', true);
+INSERT INTO public.materia(
+	nombre, descripcion, estado)
+	VALUES ('BI', 'Inteligencia de negocios', true);
+
+INSERT INTO public.estudiante(
+	carneminoridad, nombres, apellidos, fecha_nac, direccion, telefono_fijo, telefono_movil, nombre_madre, nombre_padre, id_ce)
+	VALUES ('000000001', 'Alexis', 'Coto', '2001-01-07', 'Santa Tecla', '2222-2222', '2222-2222', 'Daniela', 'Raul', 1);
+INSERT INTO public.estudiante(
+	carneminoridad, nombres, apellidos, fecha_nac, direccion, telefono_fijo, telefono_movil, nombre_madre, nombre_padre, id_ce)
+	VALUES ('000000002', 'Alexis', 'Gomez', '2002-01-07', 'Santa Tecla', '2222-2222', '2222-2222', 'Alejandra', 'Raul', 2);
+
+INSERT INTO public.estudiante(
+	carneminoridad, nombres, apellidos, fecha_nac, direccion, telefono_fijo, telefono_movil, nombre_madre, nombre_padre, id_ce)
+	VALUES ('000000003', 'Raul', 'Coto', '2003-01-07', 'Santa Tecla', '2222-2222', '2222-2222', 'Jessica', 'Raul', 3);
+INSERT INTO public.estudiante(
+	carneminoridad, nombres, apellidos, fecha_nac, direccion, telefono_fijo, telefono_movil, nombre_madre, nombre_padre, id_ce)
+	VALUES ('000000004', 'Fernando', 'Coto', '2004-01-07', 'Santa Tecla', '2222-2222', '2222-2222', 'Jackeline', 'Raul', 1);
+
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (5, 2020, 1, 1, 000000001);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (6, 2020, 1, 2, 000000001);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (7, 2020, 1, 3, 000000001);
+
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (8, 2020, 1, 2, 000000002);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (6, 2020, 1, 3, 000000002);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (7, 2020, 1, 4, 000000002);
+	
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (8, 2020, 2, 3, 000000003);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (8, 2020, 2, 5, 000000003);
+	
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (9.5, 2020, 2, 4, 000000004);
+INSERT INTO public.materiacursada(
+	nota, annio, ciclo, codigomateria, codigoestudiante)
+	VALUES (10, 2020, 2, 5, 000000004);

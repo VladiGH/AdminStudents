@@ -1,0 +1,158 @@
+CREATE SEQUENCE public."CentroEscolar_ID_ce_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE SEQUENCE public."Departamento_ID_departamento_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE SEQUENCE public."MateriaCursada_codigoMateriaCursada_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE SEQUENCE public."Materia_ID_mat_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE SEQUENCE public."Municipio_ID_municipio_seq"
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE SEQUENCE public."UsuarioSistema_ID_user_seq"
+    INCREMENT 1
+    START 6
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+CREATE TABLE public.departamento
+(
+    id_departamento integer NOT NULL DEFAULT nextval('"Departamento_ID_departamento_seq"'::regclass),
+    nombre character varying(20) COLLATE pg_catalog."default",
+    CONSTRAINT "Departamento_pkey" PRIMARY KEY (id_departamento)
+)
+
+CREATE TABLE public.municipio
+(
+    id_municipio integer NOT NULL DEFAULT nextval('"Municipio_ID_municipio_seq"'::regclass),
+    nombre character varying(20) COLLATE pg_catalog."default",
+    id_departamento integer NOT NULL,
+    CONSTRAINT "Municipio_pkey" PRIMARY KEY (id_municipio),
+    CONSTRAINT "Departamento" FOREIGN KEY (id_departamento)
+        REFERENCES public.departamento (id_departamento) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+CREATE TABLE public.usuariosistema
+(
+    id_user integer NOT NULL DEFAULT nextval('"UsuarioSistema_ID_user_seq"'::regclass),
+    nombre character varying(30) COLLATE pg_catalog."default",
+    apellido character varying(30) COLLATE pg_catalog."default",
+    descripcion character varying(30) COLLATE pg_catalog."default",
+    fecha_nac date,
+    direccion character varying(100) COLLATE pg_catalog."default",
+    estado boolean,
+    username character varying(8) COLLATE pg_catalog."default",
+    password character varying(10) COLLATE pg_catalog."default",
+    id_municipio integer NOT NULL,
+    id_rol integer,
+    CONSTRAINT "UsuarioSistema_pkey" PRIMARY KEY (id_user),
+    CONSTRAINT "Municipio" FOREIGN KEY (id_municipio)
+        REFERENCES public.municipio (id_municipio) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "Rol" FOREIGN KEY (id_rol)
+        REFERENCES public.rol (id_rol) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+CREATE TABLE public.centroescolar
+(
+    id_ce integer NOT NULL DEFAULT nextval('"CentroEscolar_ID_ce_seq"'::regclass),
+    nombre character varying(50) COLLATE pg_catalog."default",
+    descripcion character varying COLLATE pg_catalog."default",
+    direccion character varying(50) COLLATE pg_catalog."default",
+    estado boolean,
+    id_municipio integer NOT NULL,
+    CONSTRAINT "CentroEscolar_pkey" PRIMARY KEY (id_ce),
+    CONSTRAINT "Municipio" FOREIGN KEY (id_municipio)
+        REFERENCES public.municipio (id_municipio) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+
+
+CREATE TABLE public.estudiante
+(
+    carneminoridad character varying(9) COLLATE pg_catalog."default" NOT NULL,
+    nombres character varying(50) COLLATE pg_catalog."default",
+    apellidos character varying(50) COLLATE pg_catalog."default",
+    fecha_nac date,
+    direccion character varying(100) COLLATE pg_catalog."default",
+    telefono_fijo character varying(9) COLLATE pg_catalog."default",
+    telefono_movil character varying(9) COLLATE pg_catalog."default",
+    nombre_madre character varying(50) COLLATE pg_catalog."default",
+    nombre_padre character varying(50) COLLATE pg_catalog."default",
+    id_ce integer NOT NULL,
+    CONSTRAINT "Estudiante_pkey" PRIMARY KEY (carneminoridad),
+    CONSTRAINT "CentroEscolar" FOREIGN KEY (id_ce)
+        REFERENCES public.centroescolar (id_ce) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+CREATE TABLE public.materia
+(
+    id_mat integer NOT NULL DEFAULT nextval('"Materia_ID_mat_seq"'::regclass),
+    nombre character varying(20) COLLATE pg_catalog."default",
+    descripcion character varying(30) COLLATE pg_catalog."default",
+    estado boolean,
+    CONSTRAINT "Materia_pkey" PRIMARY KEY (id_mat)
+)
+
+CREATE TABLE public.materiacursada
+(
+    codigomateriacursada integer NOT NULL DEFAULT nextval('"MateriaCursada_codigoMateriaCursada_seq"'::regclass),
+    nota double precision,
+    annio integer,
+    ciclo integer,
+    codigomateria integer,
+    codigoestudiante character varying(9) COLLATE pg_catalog."default",
+    CONSTRAINT "codigoMateriaCursada" PRIMARY KEY (codigomateriacursada),
+    CONSTRAINT codigoestudiante FOREIGN KEY (codigoestudiante)
+        REFERENCES public.estudiante (carneminoridad) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT codigomateria FOREIGN KEY (codigomateriacursada)
+        REFERENCES public.materia (id_mat) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+
+CREATE TABLE public.rol
+(
+    id_rol integer NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT rol_pkey PRIMARY KEY (id_rol)
+)
+
+
