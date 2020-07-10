@@ -8,6 +8,7 @@ import com.uca.capas.service.CentroEscolarService;
 import com.uca.capas.service.EstudianteService;
 import com.uca.capas.service.MateriaCursadaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
+@Secured("ROLE_COORDINADOR")
 public class ExpedientesController {
 
     @Autowired
@@ -88,13 +90,19 @@ public class ExpedientesController {
         return mav;
     }
 
-    /*@RequestMapping("/buscarEstudiante")
-    public ModelAndView buscar(Model model, @ModelAttribute("estudiante") Estudiante estudiante, BindingResult result){
-        List<Estudiante> estudiantes =this.estudianteService.filterByNombre(estudiante.getNombreEstudiante());
-        model.addAttribute("estudiante",estudiantes);
-        return "expediente";
+    @RequestMapping("/listadoExpedientes")
+    public ModelAndView listadoExpedientes() {
+        ModelAndView mav = new ModelAndView();
+        List<Estudiante> estudiantes = null;
+        try {
+            estudiantes = estudianteService.findAll();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        mav.addObject("estudiantes", estudiantes);
+        mav.setViewName("studentsList");
+        return mav;
     }
-*/
 
     @RequestMapping(value = "/buscarEstudianteNombre", method = RequestMethod.POST)
     public ModelAndView buscarNombre(@RequestParam(value="nombreEstudiante") String nombre) {
@@ -129,32 +137,22 @@ public class ExpedientesController {
     @PostMapping("filtrarExpediente")
     public ModelAndView filtro(@RequestParam Integer tipo,@RequestParam String cadena) throws ParseException{
         ModelAndView mav = new ModelAndView();
-        String aux;
-
-        int aprobadas= 0,reprobadas=0;
-
         if(tipo!=null){
             List<Estudiante> estudianteList =estudianteService.getByQueri(tipo,cadena);
             List<MateriasCursadas> materiasL = null;
             for(Estudiante estu : estudianteList)
             {
-                //imprimimos el objeto pivote
                 System.out.println(estu.getCodigoEstudiante());
-                aux=estu.getCodigoEstudiante();
                 materiasL=materiaCursadaService.findByName(estu);
                 estu.setCursadas(materiasL);
                 System.out.println("LASMATERIAS SON:  "+materiasL.size());
 
             }
-
             mav.addObject("estu", estudianteList);
         }else{
             System.out.println("No recibi nada bro :C");
         }
-
-
         mav.setViewName("studentsList");
-
         return mav;
     }
 

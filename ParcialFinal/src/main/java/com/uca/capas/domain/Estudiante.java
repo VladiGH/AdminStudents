@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
@@ -48,13 +49,13 @@ public class Estudiante {
     @Column(name = "direccion")
     private String direccion;
 
-	@Size(max = 9, min = 9, message="El campo no es igual a 9 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
+	@Pattern(regexp = "^\\d{4}\\-\\d{4}$",message = "El telefono no cumple con el formato establecido")
     @Column(name = "telefono_fijo")
     private  String telefonoFijo;
 
-	@Size(max = 9, min = 9, message="El campo no es igual a 9 caracteres")
 	@NotEmpty(message="Este campo no puede quedar vacio")
+	@Pattern(regexp = "^\\d{4}\\-\\d{4}$",message = "El telefono no cumple con el formato establecido")
     @Column(name = "telefono_movil")
     private String telefonoMovil;
 

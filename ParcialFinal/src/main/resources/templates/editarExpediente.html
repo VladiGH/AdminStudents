@@ -19,7 +19,6 @@
 
 
 <body>
-
 <div class="container">
     <form th:action="@{/agregarExpediente}" th:object="${estudiante}" method="post" class="well form-horizontal">
         <fieldset>
@@ -88,7 +87,7 @@
                 <label for="telefonoFijo" class="col-md-4 control-label">Telefono fijo </label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <input th:field="*{telefonoFijo}" id="telefonoFijo" type="text" placeholder="Telefono fijo"
+                        <input th:field="*{telefonoFijo}" id="telefonoFijo" type="text" placeholder="xxxx-xxxx"
                                name="telefonoFijo" class="form-control" />
                         <span th:errors="*{telefonoFijo}" style="color: #E81505"></span>
                     </div>
@@ -101,7 +100,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <input th:field="*{telefonoMovil}" id="telefonoMovil" type="text"
-                               placeholder="Telefono movil" name="telefonoMovil" class="form-control" />
+                               placeholder="xxxx-xxxx" name="telefonoMovil" class="form-control" />
                         <span th:errors="*{telefonoMovil}" style="color: #E81505"></span>
                     </div>
                 </div>
