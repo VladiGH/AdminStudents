@@ -24,11 +24,11 @@
         <fieldset>
 
             <div class="form-group">
-                <label for="codigoEstudiante" class="col-md-4 control-label">Codigo del estudiante </label>
+                <label for="codigoEstudiante" class="col-md-4 control-label" hidden>Codigo del estudiante </label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <input th:field="*{codigoEstudiante}" id="codigoEstudiante" type="text"
-                               placeholder="Codigo del estudiante" name="codigoEstudiante" class="form-control" />
+                               placeholder="Codigo del estudiante" name="codigoEstudiante" class="form-control" hidden />
                         <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
                     </div>
                 </div>
