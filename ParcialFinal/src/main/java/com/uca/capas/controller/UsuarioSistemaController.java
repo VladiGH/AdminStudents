@@ -55,14 +55,32 @@ public class UsuarioSistemaController {
     public ModelAndView saveUser(@Valid @ModelAttribute UsuarioSistema user, BindingResult result) {
         ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
+        	if(!result.getFieldErrors("nombre").isEmpty()) 
+        		mav.addObject("nombres", result.getFieldErrors("nombre").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("apellido").isEmpty()) 
+        		mav.addObject("apellidos", result.getFieldErrors("apellido").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("descripcion").isEmpty()) 
+        		mav.addObject("descripciones", result.getFieldErrors("descripcion").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("direccion").isEmpty()) 
+        		mav.addObject("direcciones", result.getFieldErrors("direccion").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("username").isEmpty()) 
+        		mav.addObject("usernames", result.getFieldErrors("username").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("password").isEmpty()) 
+        		mav.addObject("passwords", result.getFieldErrors("password").get(0).getDefaultMessage().toString());
             List<Municipio> municipiosL = null;
             try {
                 municipiosL = municipioService.findAll();
             }catch(Exception e) {
                 e.printStackTrace();
             }
-
+            List<Rol> rolesL = null;
+            try{
+                rolesL = rolService.findAll();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             mav.addObject("municipios", municipiosL);
+            mav.addObject("roles",rolesL);
             mav.addObject("user", user);
             mav.addObject("respuesta", "Hubo un error al guardar, revisar campos");
             mav.setViewName("usuarioSistema");
@@ -126,6 +144,18 @@ public class UsuarioSistemaController {
     public ModelAndView updateUser(@Valid @ModelAttribute UsuarioSistema user, BindingResult result) {
         ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
+        	if(!result.getFieldErrors("nombre").isEmpty()) 
+        		mav.addObject("nombres", result.getFieldErrors("nombre").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("apellido").isEmpty()) 
+        		mav.addObject("apellidos", result.getFieldErrors("apellido").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("descripcion").isEmpty()) 
+        		mav.addObject("descripciones", result.getFieldErrors("descripcion").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("direccion").isEmpty()) 
+        		mav.addObject("direcciones", result.getFieldErrors("direccion").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("username").isEmpty()) 
+        		mav.addObject("usernames", result.getFieldErrors("username").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("password").isEmpty()) 
+        		mav.addObject("passwords", result.getFieldErrors("password").get(0).getDefaultMessage().toString());
             List<Municipio> municipiosL = null;
             try {
                 municipiosL = municipioService.findAll();

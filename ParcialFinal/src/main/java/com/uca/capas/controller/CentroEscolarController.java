@@ -106,6 +106,13 @@ public class CentroEscolarController {
     public ModelAndView updatecentroescolar(@Valid @ModelAttribute CentroEscolar ce, BindingResult result) {
         ModelAndView mav = new ModelAndView();
         if(result.hasErrors()) {
+        	if(!result.getFieldErrors("nombre").isEmpty()) 
+        		mav.addObject("nombres", result.getFieldErrors("nombre").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("descripcion").isEmpty()) 
+        		mav.addObject("descripciones", result.getFieldErrors("descripcion").get(0).getDefaultMessage().toString());
+        	if(!result.getFieldErrors("direccion").isEmpty()) 
+        		mav.addObject("direcciones", result.getFieldErrors("direccion").get(0).getDefaultMessage().toString());
+        	
             List<Municipio> municipiosL = null;
             try {
                 municipiosL = municipioService.findAll();
