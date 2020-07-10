@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <title>Usuarios Sistema</title>
 </head>
-
 <body>
-<div class="container">
-    <form th:action="@{/guardarCentroEscolar}" th:object="${centroEscolar}" method="post"
-          class="well form-horizontal">
-        <fieldset>
+<form th:action="@{/guardarUsuarioSistema}" th:object="${user}" method="post">
+    <br>
+	<h3 style="color: #E81505" th:text=${respuesta}/>
+    <br>
+    <label for="nombre">Nombre </label>
+    <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
+    <span th:errors="*{nombre}" style="color: #E81505"></span>
+    <br>
+    <br>
+    <label for="apellido">Apellido </label>
+    <input th:field="*{apellido}" id="apellido" type="text" placeholder="Ingresa el apellido" name="apellido" />
+    <span th:errors="*{apellido}" style="color: #E81505"></span>
+    <br>
+    <br>
+    <label for="descripcion">Descripcion </label>
+    <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
+    <span th:errors="*{descripcion}" style="color: #E81505"></span>
+    <br>
+    <br>
+    <label for="fechaNacimiento">Fecha de nacimiento </label>
+    <input type="date" id="fechaNacimiento" min="1969-01-01" max="2020-01-01" th:field="*{fechaNacimiento}">
 
-            <div class="form-group">
-                <label for="nombre" class="col-md-4 control-label">Nombre </label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre"
-                               name="nombre" class="form-control" />
-                        <span th:errors="*{nombre}" style="color: #E81505"></span>
-                    </div>
-                </div>
-            </div>
     <br>
     <br>
     <label for="direccion">Direccion </label>
@@ -35,14 +37,6 @@
     <input type="checkbox" th:field ="*{estado}" th:value="${false}">
     <label    >Estado   </label>
     <br>
-        <th>
-            <label>Rol</label>
-            <select th:field="*{rol.id_rol}">
-                <option th:each ="rol: ${roles}" th:value="${rol.id_rol}"
-                        th:text ="${rol.NombreDelegate}">
-                </option>
-            </select>
-        </th>
     <br>
     <label for="username">Username </label>
     <input th:field="*{username}" id="username" type="text" placeholder="Ingresa el username" name="username" />
@@ -53,62 +47,17 @@
     <span th:errors="*{password}" style="color: #E81505"></span>
     <br>
     <br>
-            <div class="form-group">
-                <label for="descripcion" class="col-md-4 control-label">Descripcion </label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <input th:field="*{descripcion}" id="apellido" type="text"
-                               placeholder="Ingresa la descripcion" name="descripcion" />
-                        <span th:errors="*{descripcion}" style="color: #E81505"></span>
-                    </div>
-                </div>
-            </div>
+	<th>
+	<label>Municipio</label>
+		<select th:field="*{municipio.codigoMunicipio}">
+		<option th:each ="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
+				th:text ="${muni.nombre}">
+		</option>
+		</select>
+	</th>
+    <br><br>
+    <input type="submit" value="Guardar" />
 
-            <div class="form-group">
-                <label for="direccion" class="col-md-4 control-label">Direccion </label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <input th:field="*{direccion}" id="apellido" type="text" placeholder="Ingresa la direccion"
-                               name="direccion" />
-                        <span th:errors="*{direccion}" style="color: #E81505"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">Estado</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <input type="checkbox" th:field="*{estado}" th:value="${false}">
-                    </div>
-                </div>
-            </div>
-
-            <th>
-                <label>Municipio</label>
-                <select th:field="*{municipio.codigoMunicipio}">
-                    <option th:each="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
-                            th:text="${muni.nombre}">
-                    </option>
-                </select>
-            </th>
-
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-warning" />
-            </div>
-
-        </fieldset>
-    </form>
-</div>
+</form>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-
 </html>
