@@ -42,9 +42,9 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input th:field="*{codigoEstudiante}" id="codigoEstudiante" type="text"
                                placeholder="Codigo del estudiante" name="codigoEstudiante" class="form-control" />
-                        <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
-                        <br>
+                        
                     </div>
+                        <span th:errors="*{codigoEstudiante}" style="color: #E81505"></span>
                 </div>
             </div>
 
@@ -54,8 +54,9 @@
                     <div class="input-group">
                         <input th:field="*{nombreEstudiante}" id="nombreEstudiante" type="text"
                                placeholder="Nombre del estudiante" name="nombreEstudiante" class="form-control" />
-                        <span th:errors="*{nombreEstudiante}" style="color: #E81505"></span>
+                        
                     </div>
+                    <span th:errors="*{nombreEstudiante}" style="color: #E81505"></span>
                 </div>
             </div>
 
@@ -65,8 +66,9 @@
                     <div class="input-group">
                         <input th:field="*{apellidoEstudiante}" id="apellidoEstudiante" type="text"
                                placeholder="Apellido del estudiante" name="apellidoEstudiante" class="form-control" />
-                        <span th:errors="*{apellidoEstudiante}" style="color: #E81505"></span>
+                        
                     </div>
+                    <span th:errors="*{apellidoEstudiante}" style="color: #E81505"></span>
                 </div>
             </div>
 
@@ -87,8 +89,9 @@
                     <div class="input-group">
                         <input th:field="*{direccion}" id="direccion" type="text" placeholder="Dirección"
                                name="direccion" class="form-control" />
-                        <span th:errors="*{direccion}" style="color: #E81505"></span>
+                        
                     </div>
+                    <span th:errors="*{direccion}" style="color: #E81505"></span>
                 </div>
             </div>
 
@@ -97,7 +100,7 @@
                 <label for="telefonoFijo" class="col-md-4 control-label">Telefono fijo </label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
-                        <input th:field="*{telefonoFijo}" id="telefonoFijo" type="text" placeholder="Telefono fijo"
+                        <input th:field="*{telefonoFijo}" id="telefonoFijo" type="text" placeholder="xxxx-xxxx"
                                name="telefonoFijo" class="form-control" />
                         <span th:errors="*{telefonoFijo}" style="color: #E81505"></span>
                     </div>
@@ -109,7 +112,7 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <input th:field="*{telefonoMovil}" id="telefonoMovil" type="text"
-                               placeholder="Telefono movil" name="telefonoMovil" class="form-control" />
+                               placeholder="xxxx-xxxx" name="telefonoMovil" class="form-control" />
                         <span th:errors="*{telefonoMovil}" style="color: #E81505"></span>
                     </div>
                 </div>
@@ -131,8 +134,8 @@
 
                         <input th:field="*{nombrePadre}" id="nombrePadre" type="text" placeholder="Nombre del padre"
                                name="nombrePadre" class="form-control" />
-                        <span th:errors="*{nombrePadre}" style="color: #E81505"></span>
                     </div>
+                        <span th:errors="*{nombrePadre}" style="color: #E81505"></span>
                 </div>
             </div>
 
@@ -146,8 +149,9 @@
                     <div class="input-group">
                         <input th:field="*{nombreMadre}" id="nombreMadre" type="text"
                                placeholder="Nombre de la madre" name="nombreMadre" class="form-control" />
-                        <span th:errors="*{nombreMadre}" style="color: #E81505"></span>
+                        
                     </div>
+                    <span th:errors="*{nombreMadre}" style="color: #E81505"></span>
                 </div>
             </div>
             <br>
@@ -166,7 +170,7 @@
             </div>
         </fieldset>
     </form>
-    <a href="/listadoExpedientes"><button>Regresar</button></a>
+    <a href="/listadoExpedientes"><button class="btn btn-warning">Regresar</button></a>
 </div>
 
 </body>

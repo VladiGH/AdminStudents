@@ -20,6 +20,7 @@
 <body>
 
 <div class="container">
+<h1>Ingreso de nuevo usuario</h1>
     <form th:action="@{/register}" method="post" th:object="${user}" class="well form-horizontal">
         <fieldset>
 
@@ -36,8 +37,8 @@
                     <div class="input-group">
                         <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre"
                                name="nombre" class="form-control" />
-                        <span th:text="${nombres}" style="color: #E81505"></span>
                     </div>
+                        <span th:text="${nombres}" style="color: #E81505"></span>
                 </div>
             </div>
             <br>
@@ -123,7 +124,7 @@
                 </th>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" />
+                <input type="submit" value="Guardar" class="btn btn-warning" />
             </div>
 
         </fieldset>

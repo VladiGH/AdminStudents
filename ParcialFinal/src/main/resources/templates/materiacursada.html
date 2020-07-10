@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>Estudiante: </h2><h3 th:text=${estudiante.nombreEstudiante}></h3>
-<input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
+<input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/listadoExpedientes';" value="Regresar">
 
 <form th:action="@{/ingresoMateriaCursada/} + ${{estudiante.codigoEstudiante}}" method="post">
 	<input type="submit" class="btn btn-primary btn-sm"  value="+ Agregar Nueva Materia">
