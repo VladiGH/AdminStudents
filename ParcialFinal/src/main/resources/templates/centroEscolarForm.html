@@ -2,42 +2,47 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Centro Escolar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+<h3>Nuevo Centro Escolar</h3>
 <form th:action="@{/guardarCentroEscolar}" th:object="${centroEscolar}" method="post">
-    <br>
 
     <br>
-    <label for="nombre">Nombre </label>
-    <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
-    <span th:errors="*{nombre}" style="color: #E81505"></span>
-    <br>
-    <br>
-    <label for="descripcion">Descripcion </label>
-    <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
-    <span th:errors="*{descripcion}" style="color: #E81505"></span>
-    <br>
-    <br>
-    <label for="direccion">Direccion </label>
-    <input th:field="*{direccion}" id="apellido" type="text" placeholder="Ingresa la direccion" name="direccion" />
-    <span th:errors="*{direccion}" style="color: #E81505"></span>
-    <br>
-    <br>
-    <input type="checkbox" th:field ="*{estado}" th:value="${false}">
-    <label>Estado</label>
-    <br>
-    <br>
-	<th>
-	<label>Municipio</label>
-		<select th:field="*{municipio.codigoMunicipio}">
-		<option th:each ="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
-				th:text ="${muni.nombre}">
-		</option>
-		</select>
-	</th>
-    <br><br>
-    <input type="submit" value="Guardar" />
+    <div class="form-row">
+        <div class=" form-group "></div>
+        <div class="form-group col-md-10"><label for="nombre">Nombre </label>
+            <input th:field="*{nombre}" id="nombre" type="text" placeholder="Ingresa el nombre" name="nombre" />
+            <span th:errors="*{nombre}" style="color: #E81505"></span>
+            <br>
+            <br>
+            <label for="descripcion">Descripcion </label>
+            <input th:field="*{descripcion}" id="apellido" type="text" placeholder="Ingresa la descripcion" name="descripcion" />
+            <span th:errors="*{descripcion}" style="color: #E81505"></span>
+            <br>
+            <br>
+            <label for="direccion">Direccion </label>
+            <input th:field="*{direccion}" id="apellido" type="text" placeholder="Ingresa la direccion" name="direccion" />
+            <span th:errors="*{direccion}" style="color: #E81505"></span>
+            <br>
+            <br>
+            <input type="checkbox" th:field ="*{estado}" th:value="${false}">
+            <label>Estado</label>
+            <br>
+            <br>
+            <th>
+                <label>Municipio</label>
+                <select th:field="*{municipio.codigoMunicipio}">
+                    <option th:each ="muni: ${municipios}" th:value="${muni.codigoMunicipio}"
+                            th:text ="${muni.nombre}">
+                    </option>
+                </select>
+            </th>
+            <br><br>
+            <input class="btn btn-primary" type="submit" value="Guardar" /></div>
+        <div class="col-md-1"></div>
+    </div>
 
 </form>
 </body>

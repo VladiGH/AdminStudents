@@ -13,18 +13,17 @@
 <form th:action="@{/ingresoMateriaCursada/} + ${{estudiante.codigoEstudiante}}" method="post">
 	<input type="submit" class="btn btn-primary btn-sm"  value="+ Agregar Nueva Materia">
 </form>
-
 <br>
 	<h3 th:text=${respuesta} style="color: #E81505"></h3>
 <br>
-<table>
-    <thead>
-    <th>Accion</th>
-    <th>Materia </th>
-    <th>Annio </th>
-    <th>Ciclo</th>
-    <th>Nota</th>
-    <th>Resultado</th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <th scope="col" class="text-center">Accion</th>
+    <th scope="col" class="text-center">Materia </th>
+    <th scope="col" class="text-center">Annio </th>
+    <th scope="col" class="text-center">Ciclo</th>
+    <th scope="col" class="text-center">Nota</th>
+    <th scope="col" class="text-center">Resultado</th>
     </thead>
     <th:block th:each="materia, row: ${materiascursadas} " >
         <tr>

@@ -1,66 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Materias Cursadas</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-
 <body>
-<br>
-<div class="container">
-    <form th:action="@{/materiacursada/} + ${{estudiante.codigoEstudiante}}" method="get" class="well form-horizontal">
-        <input type="submit" class="btn btn-secondary btn-sm" value="Regresar">
-    </form>
 
-
-    <form th:action="@{/guardarMateriaCursada/}+ ${{estudiante.codigoEstudiante}} " th:object="${materiacursada}"
-          method="post" class="well form-horizontal">
-
-        <legend>
-            <center>
-                <h2>Estudiante: </h2>
-            </center>
-        </legend><br>
-
-
-        <h3 th:text=${estudiante.nombreEstudiante}></h3>
+<form th:action="@{/guardarMateriaCursada/}+ ${{estudiante.codigoEstudiante}} " th:object="${materiacursada}" method="post">
+    <div class="form-group col-md-10">
+        <h2>Estudiante: </h2><h3 th:text=${estudiante.nombreEstudiante}></h3>
         <br>
         <h3 th:text=${respuesta} style="color: #E81505"></h3>
         <br>
         <th>
             <label>Materia</label>
             <select th:field="*{materia.codigoMateria}">
-                <option th:each="mate: ${materias}" th:value="${mate.codigoMateria}" th:text="${mate.nombre}">
+                <option th:each ="mate: ${materias}" th:value="${mate.codigoMateria}"
+                        th:text ="${mate.nombre}">
                 </option>
             </select>
         </th>
         <br><br>
         <label for="annioMateriaCursada">Annio </label>
-        <input th:field="*{annioMateriaCursada}" id="annioMateriaCursada" type="number" placeholder="Ingresa el Annio"
-               name="annioMateriaCursada" />
+        <input th:field="*{annioMateriaCursada}" id="annioMateriaCursada" type="number" placeholder="Ingresa el Annio" name="annioMateriaCursada" />
         <span th:errors="*{annioMateriaCursada}" style="color: #E81505"></span>
         <br>
         <br>
         <label for="cicloMateriaCursada">Ciclo </label>
-        <input th:field="*{cicloMateriaCursada}" id="cicloMateriaCursada" type="number" placeholder="Ingresa el ciclo"
-               name="cicloMateriaCursada" />
+        <input th:field="*{cicloMateriaCursada}" id="cicloMateriaCursada" type="number" placeholder="Ingresa el ciclo" name="cicloMateriaCursada" />
         <span th:errors="*{cicloMateriaCursada}" style="color: #E81505"></span>
         <br>
         <br>
         <label for="notaMateriaCursada">Nota </label>
-        <input th:field="*{notaMateriaCursada}" id="notaMateriaCursada" type="number" step="0.01"
-               placeholder="Ingresa la nota" name="notaMateriaCursada" />
+        <input th:field="*{notaMateriaCursada}" id="notaMateriaCursada" type="number" step="0.01" placeholder="Ingresa la nota" name="notaMateriaCursada" />
         <span th:errors="*{notaMateriaCursada}" style="color: #E81505"></span>
         <br>
         <br>
 
-        <input type="submit" value="Guardar" class="btn btn-warning" />
+        <input class="btn btn-primary" type="submit" value="Guardar" />
+    </div>
 
-    </form>
-</div>
+</form><br>
+<form th:action="@{/materiacursada/} + ${{estudiante.codigoEstudiante}}" method="get">
+    <input type="submit" class="btn btn-secondary btn-sm"  value="Regresar">
+</form>
+
 </body>
-
 </html>

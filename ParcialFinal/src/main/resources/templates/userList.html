@@ -7,19 +7,20 @@
     
 </head>
 <body>
-<h2>Usuarios del Sistema</h2>
+<div class="container" align="center"><h2>Usuarios del Sistema</h2></div>
 <input type="button" class="btn btn-secondary btn-sm" onClick = "location.href='/index';" value="Regresar">
 <input type="button" class="btn btn-primary btn-sm" onClick = "location.href='/ingresoUser';" value="Ingresar Usuario de Sistema">
 	<br>
 	<h3 th:text=${respuesta}></h3>
 	<br>
-<table>
-    <thead>
-    <th>Accion</th>
-    <th>No.</th>
-    <th>Descripcion</th>
-    <th>Estado</th>
-    <th>Username</th>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <th scope="col" class="text-center">Accion</th>
+    <th scope="col" class="text-center">No.</th>
+    <th scope="col" class="text-center">Descripcion</th>
+    <th scope="col" class="text-center">Estado</th>
+    <th scope="col" class="text-center">Es admin?</th>
+    <th scope="col" class="text-center">Username</th>
     </thead>
     <th:block th:each="user, row: ${users}">
         <tr>
@@ -28,10 +29,10 @@
                 <input class="btn btn-outline-warning" type="submit" value="Editar"/><!-- th:id="'table_entry_childs_button_' + ${entry.id}"  -->
             </form>
         	</td>
-            <th th:text="${user.codigoUser}"/>
-            <th th:text="${user.descripcion}"/>
-            <th th:text="${user.estado}"/>
-            <th th:text="${user.username}"/>
+            <th scope="row" th:text="${user.codigoUser}"/>
+            <th scope="row" th:text="${user.descripcion}"/>
+            <th scope="row" th:text="${user.estado}"/>
+            <th scope="row" th:text="${user.username}"/>
         </tr>
     </th:block>
 
