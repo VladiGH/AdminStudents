@@ -1,10 +1,13 @@
 package com.uca.capas.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +27,7 @@ import com.uca.capas.service.MateriaCursadaService;
 import com.uca.capas.service.MateriaService;
 
 @Controller
+@Secured("ROLE_COORDINADOR")
 public class MateriaCursadaController {
 	@Autowired
 	MateriaCursadaService materiaCursadaService;
@@ -38,6 +42,8 @@ public class MateriaCursadaController {
 	public ModelAndView materiasCursadas(@PathVariable("codigoEstudiante") String id){
 		ModelAndView mav = new ModelAndView();
 		Estudiante estudiante = null;
+		float promedio=0;
+
 		try {
 			estudiante = estudianteService.findOne(id);
 		}catch(Exception e) {
@@ -45,12 +51,14 @@ public class MateriaCursadaController {
 		}
         List<MateriasCursadas> materiasL = null;
         try {
-        	materiasL = materiaCursadaService.findAll();
+			//List<Float> notas = new ArrayList<>();
+        	materiasL = materiaCursadaService.findByName(estudiante);
         }catch(Exception e) {
     	   e.printStackTrace();
         }
         mav.addObject("materiascursadas", materiasL);
 		mav.addObject("estudiante", estudiante);
+
 		mav.setViewName("materiacursada");
 		return mav;
 	}	
@@ -107,7 +115,7 @@ public class MateriaCursadaController {
 			materiaCursadaService.save(materia);
 	        List<MateriasCursadas> materiasL = null;
 	        try {
-	        	materiasL = materiaCursadaService.findAll();
+	        	materiasL = materiaCursadaService.findByName(estudiante);
 	        }catch(Exception e) {
 	    	   e.printStackTrace();
 	        }
@@ -189,7 +197,7 @@ public class MateriaCursadaController {
 			materiaCursadaService.save(materia);
 	        List<MateriasCursadas> materiasL = null;
 	        try {
-	        	materiasL = materiaCursadaService.findAll();
+	        	materiasL = materiaCursadaService.findByName(estudiante);
 	        }catch(Exception e) {
 	    	   e.printStackTrace();
 	        }

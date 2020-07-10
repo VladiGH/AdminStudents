@@ -25,7 +25,7 @@
     <th scope="col" class="text-center">Nota</th>
     <th scope="col" class="text-center">Resultado</th>
     </thead>
-    <th:block th:each="materia, row: ${materiascursadas}">
+    <th:block th:each="materia, row: ${materiascursadas} " >
         <tr>
            	<td>
             <form th:action="@{/editMateriaCursada/}+ ${{materia.codigoMateriaCursada}} " method="post"><!--  -->
@@ -35,8 +35,12 @@
             <th  th:text="${materia.materia.nombre}"/>
             <th th:text="${materia.annioMateriaCursada}"/>
             <th th:text="${materia.cicloMateriaCursada}"/>
-            <th th:text="${materia.notaMateriaCursada}"/>
+            <th th:text="${materia.notaMateriaCursada}" />
             <th th:text="${materia.notaDelegate}"/>
+
+
+
+
         </tr>
     </th:block>
 
